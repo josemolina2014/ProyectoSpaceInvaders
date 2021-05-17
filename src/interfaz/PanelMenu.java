@@ -161,7 +161,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 	/**
 	 * 
-	 * @param pPrincipal
+	 * @param
 	 */
 	public PanelMenu(InterfazSpaceInvaders interfaz) {
 

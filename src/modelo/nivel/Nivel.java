@@ -2,11 +2,13 @@ package modelo.nivel;
 
 import modelo.enemigo.Alien;
 
-public abstract class Nivel {
+public interface Nivel {
 
-	private int velocidadEnemigos;
-	private int vidasEnemigos;
-	private int nombre;
-	private Alien[] enemigos;
+	public int getVelocidadEnemigos();
 
+	public int getVidasEnemigos();
+
+	public int getNombre();
+
+	public Alien[][] getEnemigos();
 }

@@ -2,7 +2,7 @@ package controlador;
 
 import modelo.Puntaje;
 
-public class ControlarPuntaje {
+public class ControladorPuntaje {
 
 	/**
 	 * 

@@ -5,9 +5,9 @@ import control.Teclado;
 import modelo.Puntaje;
 import modelo.nivel.Nivel;
 
-public class ControlDeJuego {
+public class ControladorJuego {
 
-	private ControlDeJuego instancia;
+	private ControladorJuego instancia;
 	private Teclado teclado;
 	private Nivel nivel;
 	private Puntaje puntaje;

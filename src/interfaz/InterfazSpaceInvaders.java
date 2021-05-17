@@ -21,6 +21,7 @@ import hilos.HiloEnemigos;
 import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
+import util.Parametros;
 
 public class InterfazSpaceInvaders extends JFrame {
 
@@ -56,7 +57,7 @@ public class InterfazSpaceInvaders extends JFrame {
 	private boolean pausa;
 
 	public InterfazSpaceInvaders() {
-
+		Parametros.loadFont();
 		mundo = new SpaceInvaders(false);
 
 		panelMenu = new PanelMenu(this);

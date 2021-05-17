@@ -4,6 +4,6 @@ import modelo.nivel.Nivel;
 
 public interface IFactoryNivel {
 
-	public Nivel crearNivel(String tipoNivel) ;
+	public Nivel crearNivel(String tipoNivel) throws Exception ;
 
 }

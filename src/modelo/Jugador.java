@@ -1,65 +1,45 @@
 package modelo;
 
-public class Jugador implements ElementoDePantalla {
+import java.util.ArrayList;
+import java.util.List;
 
-	private int posicionX;
-	private int posicionY;
-	private int alto;
-	private int ancho;
-	private boolean visible;
-	private String rutaImagen;
+public class Jugador {
 
-	@Override
-	public int getPosicionX() {
-		return posicionX;
-	}
+    private String nickname;
+    private String nombre;
+    private List<Partida> partidas;
 
-	public void setPosicionX(int posicionX) {
-		this.posicionX = posicionX;
-	}
+    public Jugador() {
+        partidas = new ArrayList<>();
+    }
 
-	@Override
-	public int getPosicionY() {
-		return posicionY;
-	}
+    public Jugador(String nickname, String nombre) {
+        this.nickname = nickname;
+        this.nombre = nombre;
+        partidas = new ArrayList<>();
+    }
 
-	public void setPosicionY(int posicionY) {
-		this.posicionY = posicionY;
-	}
+    public String getNickname() {
+        return nickname;
+    }
 
-	@Override
-	public int getAlto() {
-		return alto;
-	}
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
-	public void setAlto(int alto) {
-		this.alto = alto;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	@Override
-	public int getAncho() {
-		return ancho;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setAncho(int ancho) {
-		this.ancho = ancho;
-	}
+    public List<Partida> getPartidas() {
+        return partidas;
+    }
 
-	@Override
-	public boolean isVisible() {
-		return visible;
-	}
-
-	public void setVisible(boolean visible) {
-		this.visible = visible;
-	}
-
-	@Override
-	public String getRutaImagen() {
-		return rutaImagen;
-	}
-
-	public void setRutaImagen(String rutaImagen) {
-		this.rutaImagen = rutaImagen;
-	}
+    public void setPartidas(List<Partida> partidas) {
+        this.partidas = partidas;
+    }
 }
