@@ -11,13 +11,21 @@ public class Partida implements Serializable {
     private Jugador jugador;
     private Nivel nivel;
     private int puntaje;
+    private int vidas;
 
+    /**
+     * Constructor de la clase Partida
+     * inicializa una partida por defecto en
+     * el nivel 1 y con 3 vidas
+     * @param nombre nombre de la partida que se va a crear
+     */
     public Partida(String nombre) {
         this.nombre = nombre;
 
         try {
             FactoryNivel factoryNivel = new FactoryNivel();
             nivel = factoryNivel.crearNivel("1");
+            vidas= 3;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,5 +64,13 @@ public class Partida implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
     }
 }

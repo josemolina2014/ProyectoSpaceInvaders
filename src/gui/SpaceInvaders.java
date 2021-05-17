@@ -1,6 +1,7 @@
 package gui;
 
 import gui.estadosJuego.EstadoJuego;
+import gui.estadosJuego.IntroJuego;
 import gui.estadosJuego.MenuPrincipal;
 import modelo.Jugador;
 import modelo.Partida;
@@ -34,7 +35,7 @@ public class SpaceInvaders {
         jFrame.setVisible(true);
         cargarValorXdefecto();
 
-        setCurrentState(new MenuPrincipal(this));
+        setCurrentState(new IntroJuego(this));
     }
 
     public static void main(String[] args) {

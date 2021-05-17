@@ -8,12 +8,14 @@ import java.util.List;
 public class ControladorPartida {
 
 
-    public void inicializarPartida(Jugador jugador, String nombre)
+    public Partida inicializarPartida(Jugador jugador, String nombre)
     {
         Partida nuevaPartida = new Partida(nombre);
         nuevaPartida.setJugador(jugador);
         nuevaPartida.setPuntaje(0);
         jugador.getPartidas().add(nuevaPartida);
+
+        return nuevaPartida;
     }
 
     /**

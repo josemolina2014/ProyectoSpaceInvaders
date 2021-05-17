@@ -13,6 +13,9 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
     private List<String> urlImagenes;
     private boolean visible;
     private String rutaImagen;
+    private int puntosPorMuerte;
+    private int vidas;
+    private int velocidad;
 
 
     public Alien(int posicionX, int posicionY) {
@@ -85,4 +88,28 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
         return (Alien) this.clone();
     }
 
+    public int getPuntosPorMuerte() {
+        return puntosPorMuerte;
+    }
+
+    public void setPuntosPorMuerte(int puntosPorMuerte) {
+        this.puntosPorMuerte = puntosPorMuerte;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+
+    public int getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
 }

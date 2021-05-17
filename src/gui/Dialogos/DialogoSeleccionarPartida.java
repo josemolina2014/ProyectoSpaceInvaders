@@ -2,6 +2,7 @@ package gui.Dialogos;
 
 import controlador.ControladorPartida;
 import gui.SpaceInvaders;
+import gui.estadosJuego.Juego;
 import modelo.Partida;
 
 
@@ -146,6 +147,8 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 				//interfaz.actualizarPartidaActual(partidaSeleccionada);
 				this.dispose();
 				//interfaz.cambiarPanel("Juego");
+				menuPrincipal.setPartidaSeleccionada(partida);
+				menuPrincipal.setCurrentState(new Juego(menuPrincipal));
 				System.out.println("cambiarPanel e Iniciar Juego");
 			} else {
 				JOptionPane.showMessageDialog(this, "Por favor cree una partida para el jugaodor",

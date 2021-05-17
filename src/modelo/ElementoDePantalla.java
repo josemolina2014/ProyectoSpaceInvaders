@@ -7,5 +7,4 @@ public interface ElementoDePantalla {
     int getAncho();
     boolean isVisible();
     String getRutaImagen();
-
 }
