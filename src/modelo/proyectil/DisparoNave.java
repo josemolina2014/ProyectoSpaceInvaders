@@ -1,6 +1,7 @@
 package modelo.proyectil;
 
 import modelo.ElementoDePantalla;
+import util.Constantes;
 
 public class DisparoNave implements ElementoDePantalla, Proyectil {
 
@@ -10,6 +11,12 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 	private int ancho;
 	private boolean visible;
 	private String rutaImagen;
+	private boolean impacto;
+
+	public DisparoNave(int posicionX, int posicionY) {
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
+	}
 
 	@Override
 	public int getPosicionX() {
@@ -30,6 +37,8 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 	public void setPosicionY(int posicionY) {
 		this.posicionY = posicionY;
 	}
+
+
 
 	@Override
 	public int getAlto() {
@@ -64,7 +73,21 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 		return rutaImagen;
 	}
 
+	@Override
+	public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
+
+	}
+
 	public void setRutaImagen(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
+	}
+
+	@Override
+	public boolean isImpacto() {
+		return impacto;
+	}
+
+	public void setImpacto(boolean impacto) {
+		this.impacto = impacto;
 	}
 }

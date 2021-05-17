@@ -5,10 +5,12 @@ import gui.estadosJuego.IntroJuego;
 import gui.estadosJuego.MenuPrincipal;
 import modelo.Jugador;
 import modelo.Partida;
+import util.Constantes;
 import util.Parametros;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 public class SpaceInvaders {
     public static final int ANCHO = 640;
@@ -20,13 +22,14 @@ public class SpaceInvaders {
     private Partida partidaSeleccionada;
     private Jugador jugadorSeleccionado;
 
+    private boolean juegoEnCurso;
 
 
 
     public SpaceInvaders() {
         Parametros.loadFont();
         jFrame = new JFrame();
-        jFrame.setSize(ANCHO,ALTO);
+        jFrame.setSize(Constantes.TAMANO_PANTALLA);
         jFrame.setUndecorated(true);
         jFrame.setLocationRelativeTo(null);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,10 +49,12 @@ public class SpaceInvaders {
         jugadorSeleccionado = new Jugador();
         jugadorSeleccionado.setNickname("Dummy");
         jugadorSeleccionado.setNombre("");
+        juegoEnCurso=false;
 
     }
 
     public void setCurrentState(EstadoJuego estadoJuego){
+
 
         currentState = estadoJuego;
 
@@ -58,6 +63,7 @@ public class SpaceInvaders {
 
 
         jFrame.getContentPane().add(currentState.getMainPanel());
+
 
         jFrame.addKeyListener(currentState.getKeyListener());
         jFrame.pack();
@@ -88,5 +94,13 @@ public class SpaceInvaders {
 
     public EstadoJuego getCurrentState() {
         return currentState;
+    }
+
+    public boolean isJuegoEnCurso() {
+        return juegoEnCurso;
+    }
+
+    public void setJuegoEnCurso(boolean juegoEnCurso) {
+        this.juegoEnCurso = juegoEnCurso;
     }
 }

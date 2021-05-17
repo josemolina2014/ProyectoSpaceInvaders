@@ -1,5 +1,8 @@
 package modelo;
 
+import modelo.proyectil.DisparoNave;
+import util.Constantes;
+
 public class NaveEspacial implements ElementoDePantalla {
 
 	private int posicionX;
@@ -8,7 +11,48 @@ public class NaveEspacial implements ElementoDePantalla {
 	private int ancho;
 	private boolean visible;
 	private String rutaImagen;
+	private int cantidadDisparos;
+	private DisparoNave disparo;
 
+	public NaveEspacial() {
+		visible=true;
+		cantidadDisparos=0;
+	}
+
+
+
+	@Override
+	public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
+		int siguientePosicion = posicionX+direccion.getUnidad();
+		if(estaDentroLimitePantalla(siguientePosicion))
+			posicionX = siguientePosicion;
+	}
+	public boolean estaDentroLimitePantalla(int coordenada){
+		return (coordenada>=0 && coordenada<=Constantes.BORDE_PANTALLA_NAVE);
+	}
+
+	public void disparar (int posX, int posY)
+	{
+		if(disparo==null)
+		{
+			cantidadDisparos++;
+			disparo = new DisparoNave(posX, posY);
+
+		}
+	}
+
+
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
+	}
+
+	public int getCantidadDisparos() {
+		return cantidadDisparos;
+	}
+
+	public void setCantidadDisparos(int cantidadDisparos) {
+		this.cantidadDisparos = cantidadDisparos;
+	}
 	@Override
 	public int getPosicionX() {
 		return posicionX;
@@ -59,7 +103,5 @@ public class NaveEspacial implements ElementoDePantalla {
 		return rutaImagen;
 	}
 
-	public void setRutaImagen(String rutaImagen) {
-		this.rutaImagen = rutaImagen;
-	}
+
 }

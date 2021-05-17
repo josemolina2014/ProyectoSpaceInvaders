@@ -1,7 +1,10 @@
 package gui.estadosJuego;
 
 import controlador.ControladorJuego;
+import controlador.EventosTeclado;
 import gui.SpaceInvaders;
+import mundo.NaveJugador;
+import util.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,14 +16,21 @@ public class Juego extends JPanel implements EstadoJuego{
 
     private ControladorJuego controladorJuego;
 
+    private EventosTeclado eventosTeclado;
+
 
     public Juego(SpaceInvaders framePrincipal) {
+        super();
         this.framePrincipal = framePrincipal;
+        this.framePrincipal.setJuegoEnCurso(true);
 
         controladorJuego = ControladorJuego.getInstancia(framePrincipal.getPartidaSeleccionada());
 
+
         setPreferredSize(new Dimension(SpaceInvaders.ANCHO, SpaceInvaders.ALTO));
         setLayout(null);
+        eventosTeclado  = new EventosTeclado(framePrincipal,controladorJuego);
+        addKeyListener(eventosTeclado);
     }
 
     public void paintComponent(Graphics g) {
@@ -29,7 +39,13 @@ public class Juego extends JPanel implements EstadoJuego{
 
         g.drawImage(iconFondo.getImage(), 0, 0, null);
 
-        ImageIcon imagen = new ImageIcon("./data/imagenes/Naves/nave.png");
+        ImageIcon imagen = new ImageIcon(controladorJuego.getNaveEspacial().getRutaImagen());
+
+        g.drawImage(imagen.getImage(),
+                controladorJuego.getNaveEspacial().getPosicionX(),
+                controladorJuego.getNaveEspacial().getPosicionY(),
+                imagen.getIconWidth(), imagen.getIconHeight(),
+                null);
 
         //DIBUJAR INFORMACIÓN DEL JUGADOR
         g.setColor(Color.WHITE);
@@ -58,6 +74,6 @@ public class Juego extends JPanel implements EstadoJuego{
 
     @Override
     public KeyListener getKeyListener() {
-        return null;
+        return eventosTeclado;
     }
 }

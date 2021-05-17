@@ -7,4 +7,5 @@ public interface Proyectil {
 	public void setPosicionX(int posicionX);
 	public int getPosicionY();
 	public void setPosicionY(int posicionY);
+	public boolean isImpacto();
 }

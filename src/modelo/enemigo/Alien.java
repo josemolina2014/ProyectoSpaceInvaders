@@ -1,6 +1,7 @@
 package modelo.enemigo;
 
 import modelo.ElementoDePantalla;
+import util.Constantes;
 
 import java.util.List;
 
@@ -111,5 +112,10 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
 
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
+    }
+
+    @Override
+    public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
+
     }
 }

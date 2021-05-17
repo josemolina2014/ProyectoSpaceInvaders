@@ -1,5 +1,7 @@
 package modelo;
 
+import util.Constantes;
+
 public interface ElementoDePantalla {
     int getPosicionX();
     int getPosicionY();
@@ -7,4 +9,5 @@ public interface ElementoDePantalla {
     int getAncho();
     boolean isVisible();
     String getRutaImagen();
+    void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion);
 }

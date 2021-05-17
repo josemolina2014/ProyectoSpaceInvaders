@@ -17,10 +17,13 @@ public class ControladorJuego {
 	private Alien [][] aliens;
 	private Puntaje puntaje;
 
+
+
 	private boolean enEjecucion;
 
 	private ControladorJuego(Partida partidaActual) {
 		this.partidaActual = partidaActual;
+		inicializarNaveEspacial();
 		enEjecucion=true;
 	}
 	private synchronized static void createInstance(Partida partida){
@@ -34,11 +37,13 @@ public class ControladorJuego {
 	}
 
 	public void inicializarEnemigos(Nivel nivel) {
-
-		new ControladorEnemigos().crearEnemigos(nivel);
-
-
+		aliens = new ControladorEnemigos().crearEnemigos(nivel);
 	}
+
+	public void inicializarNaveEspacial(){
+		naveEspacial = new ControladorNaveEspacial().crearNaveEspacial();
+	}
+
 	public void inicio() {
 		// TODO - implement ControlDeJuego.inicio
 		throw new UnsupportedOperationException();
@@ -69,5 +74,14 @@ public class ControladorJuego {
 
 	public Alien[][] getAliens() {
 		return aliens;
+	}
+
+	public NaveEspacial getNaveEspacial() {
+		return naveEspacial;
+	}
+
+
+	public void setNaveEspacial(NaveEspacial naveEspacial) {
+		this.naveEspacial = naveEspacial;
 	}
 }

@@ -83,16 +83,21 @@ public class IntroJuego implements EstadoJuego {
     public class IntroJuegoKeyListener implements KeyListener {
         @Override
         public void keyTyped(KeyEvent e) {
-            System.out.println("IntroJuegoKeyListener.keyTyped");
-            if (e.getKeyCode() == KeyEvent.VK_SPACE)
-                cambiarEstadoInicial();
+            if(!framePrincipal.isJuegoEnCurso())
+            {
+                System.out.println("IntroJuegoKeyListener.keyTyped");
+                if (e.getKeyCode() == KeyEvent.VK_SPACE)
+                    cambiarEstadoInicial();
+            }
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
-            if (e.getKeyCode() == KeyEvent.VK_ENTER)
-                cambiarEstadoInicial();
+            if(!framePrincipal.isJuegoEnCurso()){
+                System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+                if (e.getKeyCode() == KeyEvent.VK_ENTER)
+                    cambiarEstadoInicial();
+            }
         }
 
         @Override

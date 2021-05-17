@@ -1,6 +1,7 @@
 package modelo.proyectil;
 
 import modelo.ElementoDePantalla;
+import util.Constantes;
 
 public class BombaAlien implements ElementoDePantalla, Proyectil{
 
@@ -62,6 +63,11 @@ public class BombaAlien implements ElementoDePantalla, Proyectil{
 	@Override
 	public String getRutaImagen() {
 		return rutaImagen;
+	}
+
+	@Override
+	public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
+
 	}
 
 	public void setRutaImagen(String rutaImagen) {

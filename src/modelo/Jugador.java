@@ -10,6 +10,7 @@ public class Jugador implements Serializable {
     private String nombre;
     private List<Partida> partidas;
 
+
     public Jugador() {
         partidas = new ArrayList<>();
     }

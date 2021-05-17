@@ -20,7 +20,7 @@ public class ControladorEnemigos {
         return Constantes.ALIEN_ALTO *(columna+1);
     }
 
-    public void crearEnemigos(Nivel nivel) {
+    public Alien[][] crearEnemigos(Nivel nivel) {
 
         aliens = new Alien [Constantes.ALIEN_FILAS][Constantes.ALIEN_COLUMNAS];
 
@@ -28,9 +28,10 @@ public class ControladorEnemigos {
         generarEnemigos(Constantes.TiposEnemigos.CANGREJO,Constantes.ALIEN_FILAS_CANGREJOS, nivel);
         generarEnemigos(Constantes.TiposEnemigos.PULPO,Constantes.ALIEN_FILAS_PULPOS, nivel);
 
+        return aliens;
     }
 
-    public  void generarEnemigos(Constantes.TiposEnemigos type, int cantidadFilas, Nivel nivel){
+    private  void generarEnemigos(Constantes.TiposEnemigos type, int cantidadFilas, Nivel nivel){
         try {
             FactoryEnemigo fabricaEnemigos = new FactoryEnemigo();
             for (int fila = 0; fila < cantidadFilas; fila++)
@@ -52,12 +53,4 @@ public class ControladorEnemigos {
         }
     }
 
-    public static void main(String[] args) {
-        ControladorEnemigos controladorEnemigos = new ControladorEnemigos();
-        Nivel1 nivel1 = new Nivel1();
-        //controladorEnemigos.getEnemigos(nivel1);
-        controladorEnemigos.crearEnemigos(nivel1);
-
-
-    }
 }
