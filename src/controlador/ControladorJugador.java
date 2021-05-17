@@ -22,12 +22,13 @@ public class ControladorJugador {
 
     }
 
-    public void agregarJugador(String nombre, String nickname) throws IOException, NicknameYaExisteException
+    public Jugador agregarJugador(String nombre, String nickname) throws IOException, NicknameYaExisteException
     {
         if(buscarJugador(nickname) == null){
             Jugador jugador  = new Jugador(nombre,nickname);
             jugadores.add(jugador);
             serializarJugador();
+            return jugador;
         }
         else
             throw new NicknameYaExisteException(nickname);

@@ -20,7 +20,7 @@ public class SpaceInvaders {
     private Jugador jugadorSeleccionado;
 
 
-    public static CardLayout card = new CardLayout();
+
 
     public SpaceInvaders() {
         Parametros.loadFont();
@@ -38,7 +38,7 @@ public class SpaceInvaders {
     }
 
     public static void main(String[] args) {
-        SpaceInvaders gui = new SpaceInvaders();
+       new SpaceInvaders();
     }
 
     private void cargarValorXdefecto(){
@@ -49,10 +49,8 @@ public class SpaceInvaders {
     }
 
     public void setCurrentState(EstadoJuego estadoJuego){
-        System.out.println("current");
+
         currentState = estadoJuego;
-
-
 
         jFrame.getContentPane().removeAll();
         jFrame.repaint();
@@ -85,5 +83,9 @@ public class SpaceInvaders {
 
     public JFrame getjFrame() {
         return jFrame;
+    }
+
+    public EstadoJuego getCurrentState() {
+        return currentState;
     }
 }

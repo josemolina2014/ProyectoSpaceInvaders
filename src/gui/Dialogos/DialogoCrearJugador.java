@@ -3,7 +3,7 @@ package gui.Dialogos;
 import controlador.ControladorJugador;
 import excepciones.NicknameYaExisteException;
 import gui.SpaceInvaders;
-import gui.estadosJuego.MenuPrincipal;
+import modelo.Jugador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -150,11 +150,16 @@ public class DialogoCrearJugador extends JDialog implements ActionListener {
     public void reqAgregarJugador(String nombre, String nickname) {
         try {
 
-            controladorJugador.agregarJugador(nombre, nickname);
-            //panelMenu.repaint();
+            Jugador jugador = controladorJugador.agregarJugador(nombre, nickname);
+            menuPrincipal.getCurrentState().getMainPanel().updateUI();
+            menuPrincipal.getCurrentState().getMainPanel().repaint();
+            menuPrincipal.setJugadorSeleccionado(jugador);
+
+
           //  actualizarJugadores();
            // actualizarJugadorActual(nickname);
         } catch (NicknameYaExisteException | IOException e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",
                     JOptionPane.ERROR_MESSAGE);
         }

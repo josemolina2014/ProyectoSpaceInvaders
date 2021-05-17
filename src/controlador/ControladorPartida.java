@@ -3,8 +3,6 @@ package controlador;
 import modelo.Jugador;
 import modelo.Partida;
 
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ControladorPartida {

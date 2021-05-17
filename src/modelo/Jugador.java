@@ -1,9 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jugador {
+public class Jugador implements Serializable {
 
     private String nickname;
     private String nombre;
@@ -41,5 +42,10 @@ public class Jugador {
 
     public void setPartidas(List<Partida> partidas) {
         this.partidas = partidas;
+    }
+
+    @Override
+    public String toString() {
+        return nickname;
     }
 }
