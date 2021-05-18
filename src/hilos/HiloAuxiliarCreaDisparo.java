@@ -1,38 +1,41 @@
 package hilos;
 
+import controlador.ControladorJuego;
+import gui.estadosJuego.Juego;
 import interfaz.InterfazSpaceInvaders;
 import mundo.Partida;
 
 public class HiloAuxiliarCreaDisparo extends Thread {
 
-	private Partida partidaEnemigos;
-	private InterfazSpaceInvaders interfaz;
+	private ControladorJuego controladorJuego;
+	private Juego framePrincipal;
 
-	public HiloAuxiliarCreaDisparo(Partida a, InterfazSpaceInvaders principal) {
-		// TODO Auto-generated constructor stub
-		partidaEnemigos = a;
-		interfaz = principal;
+	public HiloAuxiliarCreaDisparo(ControladorJuego controladorJuego, Juego framePrincipal) {
+		this.controladorJuego = controladorJuego;
+		this.framePrincipal = framePrincipal;
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 
-		while (interfaz.estaEnFuncionamiento()) {
+		while (controladorJuego.isEnEjecucion()) {
 
 			int fila = (int) (Math.random() * 4);
 			int columna = (int) (Math.random() * 9);
 
-			if (partidaEnemigos.getEnemigos()[fila][columna] != null) {
-				partidaEnemigos.getEnemigos()[fila][columna].disparar(
-						partidaEnemigos.getEnemigos()[fila][columna].getPosX(),
-						partidaEnemigos.getEnemigos()[fila][columna].getPosY());
+			if (controladorJuego.getAliens()[fila][columna] != null) {
+				controladorJuego.getAliens()[fila][columna].disparar(
+						controladorJuego.getAliens()[fila][columna].getPosicionX(),
+						controladorJuego.getAliens()[fila][columna].getPosicionY());
+
+				controladorJuego.getAliens()[fila][columna].dispararMisil();
 			}
 
 			try {
 				sleep(800);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}

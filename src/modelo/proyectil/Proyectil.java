@@ -1,5 +1,6 @@
 package modelo.proyectil;
 
+import modelo.ElementoDePantalla;
 import util.Constantes;
 
 public interface Proyectil {
@@ -12,7 +13,7 @@ public interface Proyectil {
 	public void setPosicionY(int posicionY);
 	public boolean isImpacto();
 	public void movimientoVertical();
-
+	public boolean impactoAlAdversario(ElementoDePantalla objeto);
 
 
 }

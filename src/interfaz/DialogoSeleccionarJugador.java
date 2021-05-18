@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -166,21 +167,25 @@ public class DialogoSeleccionarJugador extends JDialog implements ListSelectionL
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 
-		if (comando.equals(CANCELAR))
-			this.dispose();
-		else if (comando.equals(ACEPTAR)) {
-			if (darJugadorSeleccionado() != "") {
-				interfaz.actualizarJugadorActual(darJugadorSeleccionado());
+		switch (comando) {
+			case CANCELAR:
 				this.dispose();
-			} else {
-				JOptionPane.showMessageDialog(this, "Por favor cree un jugador", "No existen jugadores",
-						JOptionPane.INFORMATION_MESSAGE);
-				this.dispose();
+				break;
+			case ACEPTAR:
+				if (!Objects.equals(darJugadorSeleccionado(), "")) {
+					interfaz.actualizarJugadorActual(darJugadorSeleccionado());
+					this.dispose();
+				} else {
+					JOptionPane.showMessageDialog(this, "Por favor cree un jugador", "No existen jugadores",
+							JOptionPane.INFORMATION_MESSAGE);
+					this.dispose();
 
-			}
-	
-		} else if (comando.equals(ORDENAR)) {
-			interfaz.ordenarJugadores();
+				}
+
+				break;
+			case ORDENAR:
+				interfaz.ordenarJugadores();
+				break;
 		}
 
 	}

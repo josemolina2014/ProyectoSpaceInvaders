@@ -241,7 +241,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		add(labLoginRapido);
 		labLoginRapido.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String respuesta = 	JOptionPane.showInputDialog(null, "Por favor ingresa tu nickname", "Login rápido", JOptionPane.DEFAULT_OPTION);
+				String respuesta = 	JOptionPane.showInputDialog(null, "Por favor ingresa tu nickname", "Login rápido", JOptionPane.PLAIN_MESSAGE);
 				if(respuesta == null || respuesta.equals("")){
 					JOptionPane.showMessageDialog(null, "Por favor ingresar un nickname válido",
 							"Error al escribir el nickname", JOptionPane.ERROR_MESSAGE);
@@ -374,28 +374,30 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		String comando = e.getActionCommand();
 
-		if (comando.equals(CREAR_JUGADOR)) {
-			dialogoCrearJugador.mostrar();
-		} else if (comando.equals(SELECCIONAR_JUGADOR)) {
-			interfaz.actualizarJugadores();
-			dialogoSeleccionarJugador.mostrar();
-		}
+		switch (comando) {
+			case CREAR_JUGADOR:
+				dialogoCrearJugador.mostrar();
+				break;
+			case SELECCIONAR_JUGADOR:
+				interfaz.actualizarJugadores();
+				dialogoSeleccionarJugador.mostrar();
+				break;
+			case CREAR_PARTIDA:
+				if (interfaz.getJugadorActual() != null)
+					dialogoCrearPartida.mostrar();
+				else
+					JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
+							"Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
+				break;
+			case SELECCIONAR_PARTIDA:
+				if (interfaz.getJugadorActual() != null) {
+					interfaz.actualizarPartidas();
+					dialogoSeleccionarPartida.mostrar();
+				} else
+					JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
+							"Error al seleccionar la partida", JOptionPane.ERROR_MESSAGE);
 
-		else if (comando.equals(CREAR_PARTIDA))
-			if (interfaz.getJugadorActual() != null)
-				dialogoCrearPartida.mostrar();
-			else
-				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
-						"Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
-
-		else if (comando.equals(SELECCIONAR_PARTIDA)) {
-			if (interfaz.getJugadorActual() != null) {
-				interfaz.actualizarPartidas();
-				dialogoSeleccionarPartida.mostrar();
-			} else
-				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
-						"Error al seleccionar la partida", JOptionPane.ERROR_MESSAGE);
-
+				break;
 		}
 	}
 

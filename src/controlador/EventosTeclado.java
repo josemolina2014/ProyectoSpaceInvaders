@@ -1,6 +1,7 @@
 package controlador;
 
 import gui.SpaceInvaders;
+import gui.estadosJuego.Juego;
 import util.Constantes;
 
 import java.awt.event.KeyEvent;
@@ -8,10 +9,10 @@ import java.awt.event.KeyListener;
 
 public class EventosTeclado implements KeyListener {
 
-    private SpaceInvaders framePrincipal;
+    private Juego framePrincipal;
     private ControladorJuego controladorJuego;
 
-    public EventosTeclado(SpaceInvaders framePrincipal, ControladorJuego controladorJuego) {
+    public EventosTeclado(Juego framePrincipal, ControladorJuego controladorJuego) {
         this.framePrincipal = framePrincipal;
         this.controladorJuego = controladorJuego;
 
@@ -31,8 +32,8 @@ public class EventosTeclado implements KeyListener {
                             controladorJuego.getNaveEspacial().getPosicionX(),
                             Constantes.NAVE_JUGADOR_POSICION_INICIAL_Y
                     );
-                    //controladorJuego.inicarHiloNave(framePrincipal);
-                    framePrincipal.getCurrentState().getMainPanel().updateUI();
+                    controladorJuego.inicarHiloNave(framePrincipal);
+                    framePrincipal.updateUI();
                 }
             }
         }
@@ -40,12 +41,12 @@ public class EventosTeclado implements KeyListener {
 
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             controladorJuego.getNaveEspacial().mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL.IZQUIERDA);
-            framePrincipal.getCurrentState().getMainPanel().updateUI();
+            framePrincipal.updateUI();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             controladorJuego.getNaveEspacial().mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL.DERECHA);
-            framePrincipal.getCurrentState().getMainPanel().updateUI();
+            framePrincipal.updateUI();
         }
 
 

@@ -1,54 +1,49 @@
 package hilos;
 
+import controlador.ControladorJuego;
+import gui.estadosJuego.Juego;
 import interfaz.InterfazSpaceInvaders;
+import modelo.enemigo.Alien;
 import mundo.Enemigo;
 import mundo.InvasorCalamar;
 import mundo.InvasorCangrejo;
 
+import java.util.concurrent.TimeUnit;
+
 public class HiloAnimacionEnemigos extends Thread {
 
-	Enemigo enemigo;
-	InterfazSpaceInvaders interfaz;
+	private Alien enemigo;
+	private Juego interfaz;
+	private ControladorJuego controladorJuego;
+
 	
-	public HiloAnimacionEnemigos(Enemigo invasores, InterfazSpaceInvaders principal) {
-		// TODO Auto-generated constructor stub
-		
-		enemigo = invasores;
-		interfaz = principal;
+	public HiloAnimacionEnemigos(Alien invasores, Juego principal, ControladorJuego controladorJuego) {
+
+		this.enemigo = invasores;
+		this.interfaz = principal;
+		this.controladorJuego= controladorJuego;
 	}
 	
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-		while (interfaz.estaEnFuncionamiento()) {
-
-			if (enemigo instanceof InvasorCalamar) {
-				enemigo.setRutaImage("./data/imagenes/Naves/s0.png");
-			} else if (enemigo instanceof InvasorCangrejo) {
-				enemigo.setRutaImage("./data/imagenes/Naves/p0.png");
-			} else {
-				enemigo.setRutaImage("./data/imagenes/Naves/r0.png");
+	public void run()
+	{
+		while (controladorJuego.isEnEjecucion())
+		{
+			for (String rutaImagen: enemigo.getUrlImagenes())
+			{
+				enemigo.setRutaImagen(rutaImagen);
+				esperar(1);
 			}
-
-			try {
-				sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			enemigo.setRutaImage(enemigo.getRutaImagen2());
-
-			try {
-				sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 		}
+	}
 
+	private void esperar(int segundos)
+	{
+		try {
+			sleep(TimeUnit.SECONDS.toMillis(segundos));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

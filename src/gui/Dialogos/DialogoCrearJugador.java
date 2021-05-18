@@ -131,13 +131,13 @@ public class DialogoCrearJugador extends JDialog implements ActionListener {
         if (comando.equals(CANCELAR)) {
             this.dispose();
         } else if (comando.equals(ACEPTAR)) {
-            if (txtNombre.getText().equals(null) || txtNombre.getText().equals("") || txtNickame.getText().equals(null)
+            if (txtNombre.getText() == null || txtNombre.getText().equals("") || txtNickame.getText() == null
                     || txtNickame.getText().equals(""))
                 JOptionPane.showMessageDialog(this, "Por favor ingrese un nombre y un nickname válido",
                         "Error al crear el jugador", JOptionPane.ERROR_MESSAGE);
 
-            else if (txtNickame.getText().length() != 5) {
-                JOptionPane.showMessageDialog(this, "El nickname debe contener 5 caracteres",
+            else if (txtNickame.getText().length() >= 5) {
+                JOptionPane.showMessageDialog(this, "El nickname debe contener máximo 5 caracteres",
                         "Error al asignar el nickname", JOptionPane.ERROR_MESSAGE);
             } else {
                 reqAgregarJugador(txtNombre.getText(), txtNickame.getText());
@@ -155,9 +155,6 @@ public class DialogoCrearJugador extends JDialog implements ActionListener {
             menuPrincipal.getCurrentState().getMainPanel().repaint();
             menuPrincipal.setJugadorSeleccionado(jugador);
 
-
-          //  actualizarJugadores();
-           // actualizarJugadorActual(nickname);
         } catch (NicknameYaExisteException | IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",

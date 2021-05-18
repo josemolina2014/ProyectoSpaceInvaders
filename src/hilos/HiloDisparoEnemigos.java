@@ -1,6 +1,8 @@
 package hilos;
 
 
+import controlador.ControladorJuego;
+import gui.estadosJuego.Juego;
 import interfaz.InterfazSpaceInvaders;
 import mundo.NaveJugador;
 import mundo.Partida;
@@ -8,36 +10,34 @@ import mundo.SpaceInvaders;
 
 public class HiloDisparoEnemigos extends Thread {
 
-	private Partida partidaEnemigos;
-	private SpaceInvaders space;
-	private InterfazSpaceInvaders interfaz;
-	
-	public HiloDisparoEnemigos(Partida a, InterfazSpaceInvaders p, SpaceInvaders b) {
-		// TODO Auto-generated constructor stub
+	private ControladorJuego controladorJuego;
+	private Juego framePrincipal;
 
-		partidaEnemigos = a;
-		interfaz = p;
-		space = b;
-
+	public HiloDisparoEnemigos(ControladorJuego controladorJuego, Juego framePrincipal) {
+		this.controladorJuego = controladorJuego;
+		this.framePrincipal = framePrincipal;
 	}
 
+	/**
+	 * se encarga de determinar si el misil de un alien golpea la nave
+	 * en caso afirmativo le quita una vida al jugador
+	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		super.run();
 
-		while (interfaz.estaEnFuncionamiento()) {
+		while (controladorJuego.isEnEjecucion()) {
 			
-			for (int i = 0; i < partidaEnemigos.getEnemigos().length; i++) {
-				for (int j = 0; j < partidaEnemigos.getEnemigos()[0].length; j++) {
+			for (int i = 0; i < controladorJuego.getAliens().length; i++) {
+				for (int j = 0; j < controladorJuego.getAliens()[0].length; j++) {
 					
-					if (partidaEnemigos.getEnemigos()[i][j] != null) {
-						if (partidaEnemigos.getEnemigos()[i][j].getDisparoUno() != null) {
-							partidaEnemigos.getEnemigos()[i][j].getDisparoUno().shoot1();
+					if (controladorJuego.getAliens()[i][j] != null) {
+						if (controladorJuego.getAliens()[i][j].getDisparo() != null) {
+							controladorJuego.getAliens()[i][j].getDisparo().movimientoVertical();
 							
-							if (partidaEnemigos.getEnemigos()[i][j].getDisparoUno().hitsJugador(space.getJugadorActual())) {
-								partidaEnemigos.getEnemigos()[i][j].eliminarDisparo();
-								space.getJugadorActual().golpe(1);
+							if (controladorJuego.getAliens()[i][j].getDisparo().impactoAlAdversario(controladorJuego.getNaveEspacial())) {
+								controladorJuego.getAliens()[i][j].eliminarDisparo();
+								controladorJuego.impactoEnNaveJugador();
 							}
 						}
 					}
@@ -47,10 +47,9 @@ public class HiloDisparoEnemigos extends Thread {
 			try {
 				sleep(60);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			interfaz.getPanelNivel().updateUI();
+			framePrincipal.updateUI();
 		}
 	}
 	

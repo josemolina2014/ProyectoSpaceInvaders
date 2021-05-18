@@ -385,26 +385,28 @@ public class MenuPrincipal  implements EstadoJuego, ActionListener {
 
         String comando = e.getActionCommand();
 
-        if (comando.equals(CREAR_JUGADOR)) {
-            dialogoCrearJugador.mostrar();
-        } else if (comando.equals(SELECCIONAR_JUGADOR)) {
-            dialogoSeleccionarJugador.mostrar();
-        }
+        switch (comando) {
+            case CREAR_JUGADOR:
+                dialogoCrearJugador.mostrar();
+                break;
+            case SELECCIONAR_JUGADOR:
+                dialogoSeleccionarJugador.mostrar();
+                break;
+            case CREAR_PARTIDA:
+                if (framePrincipal.getJugadorSeleccionado() != null)
+                    dialogoCrearPartida.mostrar();
+                else
+                    JOptionPane.showMessageDialog(null, "Por favor crear o seleccionar un jugador",
+                            "Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
+                break;
+            case SELECCIONAR_PARTIDA:
+                if (framePrincipal.getPartidaSeleccionada() != null) {
+                    dialogoSeleccionarPartida.mostrar();
+                } else
+                    JOptionPane.showMessageDialog(null, "Por favor crear o seleccionar un jugador",
+                            "Error al seleccionar la partida", JOptionPane.ERROR_MESSAGE);
 
-        else if (comando.equals(CREAR_PARTIDA))
-            if (framePrincipal.getJugadorSeleccionado() != null)
-                dialogoCrearPartida.mostrar();
-            else
-                JOptionPane.showMessageDialog(null, "Por favor crear o seleccionar un jugador",
-                        "Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
-
-        else if (comando.equals(SELECCIONAR_PARTIDA)) {
-            if (framePrincipal.getPartidaSeleccionada() != null) {
-                dialogoSeleccionarPartida.mostrar();
-            } else
-                JOptionPane.showMessageDialog(null, "Por favor crear o seleccionar un jugador",
-                        "Error al seleccionar la partida", JOptionPane.ERROR_MESSAGE);
-
+                break;
         }
 
     }

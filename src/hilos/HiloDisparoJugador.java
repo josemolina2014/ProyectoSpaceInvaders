@@ -2,6 +2,7 @@ package hilos;
 
 import controlador.ControladorJuego;
 import gui.SpaceInvaders;
+import gui.estadosJuego.Juego;
 import interfaz.InterfazSpaceInvaders;
 import modelo.enemigo.Alien;
 import modelo.proyectil.DisparoNave;
@@ -12,10 +13,10 @@ import mundo.Partida;
 public class HiloDisparoJugador extends Thread {
 
 	private ControladorJuego controladorJuego;
-	private SpaceInvaders framePrincipal;
+	private Juego framePrincipal;
 	private Alien[][] enemigos;
 
-	public HiloDisparoJugador(ControladorJuego controladorJuego, SpaceInvaders framePrincipal, Alien[][] enemigos) {
+	public HiloDisparoJugador(ControladorJuego controladorJuego, Juego framePrincipal, Alien[][] enemigos) {
 		this.controladorJuego = controladorJuego;
 		this.framePrincipal = framePrincipal;
 		this.enemigos = enemigos;
@@ -41,7 +42,8 @@ public class HiloDisparoJugador extends Thread {
 						controladorJuego.eliminarUnEnemigo(i,j);
 
 						controladorJuego.getNaveEspacial().eliminarDisparo();
-						//interfaz.getPanelNivel().repaint();
+						framePrincipal.repaint();
+						framePrincipal.updateUI();
 						//framePrincipal.getCurrentState().getMainPanel().repaint();
 						//framePrincipal.getCurrentState().getMainPanel().updateUI();
 
@@ -57,6 +59,7 @@ public class HiloDisparoJugador extends Thread {
 			}
 			//framePrincipal.getCurrentState().getMainPanel().updateUI();
 			//framePrincipal.getCurrentState().getMainPanel().updateUI();
+			framePrincipal.updateUI();
 			if (disparoNave != null) {
 				if (disparoNave.getPosicionY() <= 0) {
 					controladorJuego.getNaveEspacial().eliminarDisparo();

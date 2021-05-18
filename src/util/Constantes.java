@@ -50,17 +50,18 @@ public interface Constantes {
         }
     }
 
-    enum DIRECCION_MOVIMIENTO_VERTICAL {
+    enum DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL {
         ARRIBA (-1), ABAJO(5);
         private int unidad;
 
-        DIRECCION_MOVIMIENTO_VERTICAL(int unidad) {
+        DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL(int unidad) {
             this.unidad=unidad;
         }
         public int getUnidad() {
             return unidad;
         }
     }
+    int UNIDADES_DESCENSO_ALIEN=20;
 
     enum TiposEnemigos {
         CALAMAR, PULPO, CANGREJO

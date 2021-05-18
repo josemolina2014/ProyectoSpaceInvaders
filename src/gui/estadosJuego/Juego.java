@@ -3,13 +3,18 @@ package gui.estadosJuego;
 import controlador.ControladorJuego;
 import controlador.EventosTeclado;
 import gui.SpaceInvaders;
+import hilos.HiloAnimacionEnemigos;
+import hilos.HiloAuxiliarCreaDisparo;
+import hilos.HiloDisparoEnemigos;
+import hilos.HiloEnemigos;
 import modelo.proyectil.DisparoNave;
-import mundo.NaveJugador;
-import util.Constantes;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
+
+
 
 public class Juego extends JPanel implements EstadoJuego{
 
@@ -19,6 +24,10 @@ public class Juego extends JPanel implements EstadoJuego{
 
     private EventosTeclado eventosTeclado;
 
+    private HiloEnemigos hiloEnemigo;
+    private HiloAuxiliarCreaDisparo hiloDisparoAlien;
+    private HiloAnimacionEnemigos hiloAnimacionEnemigos;
+    private HiloDisparoEnemigos hiloDisparoEnemigos;
 
     public Juego(SpaceInvaders framePrincipal) {
         super();
@@ -29,8 +38,46 @@ public class Juego extends JPanel implements EstadoJuego{
 
         setPreferredSize(new Dimension(SpaceInvaders.ANCHO, SpaceInvaders.ALTO));
         setLayout(null);
-        eventosTeclado  = new EventosTeclado(framePrincipal,controladorJuego);
+        eventosTeclado  = new EventosTeclado(this,controladorJuego);
         addKeyListener(eventosTeclado);
+        inciarHilos();
+    }
+    private void inciarHilos(){
+        startHiloEnemigo();
+        startHiloDisparoAlien();
+        startHiloAnimacion();
+        startHiloDisparoEnemigo();
+
+    }
+
+    private void startHiloEnemigo() {
+        for (int i = 0; i <controladorJuego.getAliens().length; i++) {
+            for (int j = 0; j < controladorJuego.getAliens()[0].length; j++) {
+                if (controladorJuego.getAliens()[i][j] != null) {
+                    hiloEnemigo = new HiloEnemigos(controladorJuego.getAliens()[i][j], this, controladorJuego);
+                    hiloEnemigo.start();
+                }
+            }
+        }
+    }
+    public void startHiloDisparoAlien() {
+        hiloDisparoAlien = new HiloAuxiliarCreaDisparo(controladorJuego, this);
+        hiloDisparoAlien.start();
+    }
+    public void startHiloAnimacion() {
+        for (int i = 0; i <controladorJuego.getAliens().length; i++) {
+            for (int j = 0; j < controladorJuego.getAliens()[0].length; j++) {
+                if (controladorJuego.getAliens()[i][j] != null) {
+                    hiloAnimacionEnemigos = new HiloAnimacionEnemigos(controladorJuego.getAliens()[i][j], this, controladorJuego);
+                    hiloAnimacionEnemigos.start();
+                }
+            }
+        }
+    }
+
+    public void startHiloDisparoEnemigo() {
+        hiloDisparoEnemigos = new HiloDisparoEnemigos(controladorJuego, this);
+        hiloDisparoEnemigos.start();
     }
 
     public void paintComponent(Graphics g) {

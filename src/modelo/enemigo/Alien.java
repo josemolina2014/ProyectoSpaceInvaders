@@ -1,6 +1,8 @@
 package modelo.enemigo;
 
 import modelo.ElementoDePantalla;
+import modelo.fabrica.FactoryProyectil;
+import modelo.proyectil.Proyectil;
 import util.Constantes;
 
 import java.util.List;
@@ -17,11 +19,17 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
     private List<String> urlImagenes;
     private int vidas;
     private int velocidad;
+    private Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion;
+    private Proyectil disparo;
+    private FactoryProyectil factoryProyectil;
 
 
     public Alien(int posicionX, int posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
+
+        direccion = Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL.DERECHA;
+
     }
 
     public boolean isVisible() {
@@ -116,6 +124,63 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
 
     @Override
     public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
+        int siguientePosicion = posicionX+direccion.getUnidad();
+        if(estaDentroLimitePantalla(siguientePosicion))
+            posicionX = siguientePosicion*velocidad;
+        else
+        {
+            posicionY += Constantes.UNIDADES_DESCENSO_ALIEN;
+            invertirDireccionHorizontal();
+        }
 
+    }
+
+    protected void invertirDireccionHorizontal(){
+        switch (direccion){
+            case IZQUIERDA: direccion= Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL.DERECHA;break;
+            case DERECHA: direccion= Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL.IZQUIERDA; break;
+        }
+    }
+
+
+    public boolean estaDentroLimitePantalla(int coordenada){
+        return (coordenada>=0 && coordenada<=Constantes.BORDE_PANTALLA_NAVE);
+    }
+
+    public void mover()
+    {
+        mover(direccion);
+    }
+
+    public Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
+        this.direccion = direccion;
+    }
+
+    public void disparar(int posicionX, int posicionY)
+    {
+        System.out.println("Alien.disparar");
+        System.out.println("posicionX = " + posicionX + ", posicionY = " + posicionY);
+    }
+
+    public void dispararMisil()
+    {
+        System.out.println("Alien.dispararMisil");
+        System.out.println("posicionX = " + posicionX + ", posicionY = " + posicionY);
+    }
+
+
+    public Proyectil getDisparo() {
+        return disparo;
+    }
+
+    public void setDisparo(Proyectil disparo) {
+        this.disparo = disparo;
+    }
+    public void eliminarDisparo() {
+        this.disparo = null;
     }
 }

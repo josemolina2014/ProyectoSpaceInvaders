@@ -50,10 +50,4 @@ public class ControladorEnemigos {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        ControladorEnemigos enemigo= new ControladorEnemigos();
-        enemigo.crearEnemigos(new Nivel1());
-    }
-
 }

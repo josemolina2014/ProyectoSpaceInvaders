@@ -102,7 +102,7 @@ public class IntroJuego implements EstadoJuego {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            System.out.println("keyReleased="+KeyEvent.getKeyText(e.getKeyCode()));
+
         }
     }
 }

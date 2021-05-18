@@ -38,6 +38,7 @@ public class FactoryEnemigo implements IFactoryEnemigo {
 		calamar.setRutaImagen(rutaImagenes.get(0));
 		calamar.setUrlImagenes(rutaImagenes);
 
+
 		return calamar;
 	}
 

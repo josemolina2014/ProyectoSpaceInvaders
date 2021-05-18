@@ -1,6 +1,7 @@
 package modelo.proyectil;
 
 import modelo.ElementoDePantalla;
+import modelo.NaveEspacial;
 import util.Constantes;
 
 public class BombaAlien implements ElementoDePantalla, Proyectil{
@@ -87,10 +88,38 @@ public class BombaAlien implements ElementoDePantalla, Proyectil{
 
 	@Override
 	public void movimientoVertical(){
-		posicionY = posicionX - Constantes.DIRECCION_MOVIMIENTO_VERTICAL.ABAJO.getUnidad();
+		posicionY = posicionY - Constantes.DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL.ABAJO.getUnidad();
+	}
+
+	/**
+	 * Impacto a la nave del jugador
+	 * @param objeto
+	 * @return
+	 */
+	@Override
+	public boolean impactoAlAdversario(ElementoDePantalla objeto) {
+		NaveEspacial naveEspacial = (NaveEspacial) objeto;
+		boolean salida = false;
+
+		if (naveEspacial != null) {
+
+			double cateto = posicionX - naveEspacial.getPosicionX();
+			double cateto2 = posicionY - naveEspacial.getPosicionY();
+			double d = Math.sqrt((cateto * cateto) + (cateto2 * cateto2));
+
+			if (d < naveEspacial.getAncho() + 8 && posicionY == naveEspacial.getPosicionY()
+					&& (posicionX < naveEspacial.getPosicionX() + 35 && posicionX > naveEspacial.getPosicionX() - 10)) {
+				salida = true;
+			}
+		}
+
+		return salida;
+
 	}
 
 	public void setImpacto(boolean impacto) {
 		this.impacto = impacto;
 	}
+
+
 }

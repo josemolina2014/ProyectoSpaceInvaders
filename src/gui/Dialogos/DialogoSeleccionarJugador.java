@@ -167,22 +167,26 @@ public class DialogoSeleccionarJugador extends JDialog implements ListSelectionL
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 
-		if (comando.equals(CANCELAR))
-			this.dispose();
-		else if (comando.equals(ACEPTAR)) {
-			if (obtenerJugadorSeleccionado() != "") {
-				menuPrincipal.setJugadorSeleccionado(controladorJugador.buscarJugador(obtenerJugadorSeleccionado()));
+		switch (comando) {
+			case CANCELAR:
 				this.dispose();
-			} else {
-				JOptionPane.showMessageDialog(this, "Por favor cree un jugador", "No existen jugadores",
-						JOptionPane.INFORMATION_MESSAGE);
-				this.dispose();
+				break;
+			case ACEPTAR:
+				if (!obtenerJugadorSeleccionado().equals("")) {
+					menuPrincipal.setJugadorSeleccionado(controladorJugador.buscarJugador(obtenerJugadorSeleccionado()));
+					this.dispose();
+				} else {
+					JOptionPane.showMessageDialog(this, "Por favor cree un jugador", "No existen jugadores",
+							JOptionPane.INFORMATION_MESSAGE);
+					this.dispose();
 
-			}
-	
-		} else if (comando.equals(ORDENAR)) {
-			ordenarLista();
+				}
 
+				break;
+			case ORDENAR:
+				ordenarLista();
+
+				break;
 		}
 
 	}

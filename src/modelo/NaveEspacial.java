@@ -1,7 +1,6 @@
 package modelo;
 
 import modelo.fabrica.FactoryProyectil;
-import modelo.proyectil.DisparoNave;
 import modelo.proyectil.Proyectil;
 import util.Constantes;
 
@@ -35,6 +34,9 @@ public class NaveEspacial implements ElementoDePantalla {
 		return (coordenada>=0 && coordenada<=Constantes.BORDE_PANTALLA_NAVE);
 	}
 
+	public boolean estaDentroLimitePantalla(){
+		return (posicionX>=0 && posicionX<=Constantes.BORDE_PANTALLA_ALIEN);
+	}
 	public void disparar (int posX, int posY)
 	{
 		if(disparo==null)
@@ -48,6 +50,8 @@ public class NaveEspacial implements ElementoDePantalla {
 	{
 		disparo = null;
 	}
+
+
 
 
 	public void setRutaImagen(String rutaImagen) {
@@ -98,14 +102,10 @@ public class NaveEspacial implements ElementoDePantalla {
 	}
 
 	@Override
-	public boolean isVisible() {
-		return visible;
-	}
-
+	public boolean isVisible() {return visible;	}
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-
 	@Override
 	public String getRutaImagen() {
 		return rutaImagen;

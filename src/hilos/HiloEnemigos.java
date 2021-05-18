@@ -1,16 +1,20 @@
 package hilos;
 
+import controlador.ControladorJuego;
+import gui.SpaceInvaders;
+import gui.estadosJuego.Juego;
 import interfaz.InterfazSpaceInvaders;
+import modelo.enemigo.Alien;
 import mundo.Enemigo;
 
 public class HiloEnemigos extends Thread {
+	private Juego interfaz;
+	private Alien enemigo;
+	private ControladorJuego controladorJuego;
 
-	InterfazSpaceInvaders interfaz;
-	Enemigo enemigo;
+	public HiloEnemigos(Alien invasores, Juego interfaz, ControladorJuego controladorJuego) {
 
-	public HiloEnemigos(Enemigo invasores, InterfazSpaceInvaders interfaz) {
-		// TODO Auto-generated constructor stub
-
+		this.controladorJuego = controladorJuego;
 		enemigo = invasores;
 		this.interfaz = interfaz;
 	}
@@ -18,22 +22,10 @@ public class HiloEnemigos extends Thread {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while (interfaz.estaEnFuncionamiento()) {
+		while (controladorJuego.isEnEjecucion()) {
 
-			if (enemigo.getDireccion() == Enemigo.DERECHA) {
-				enemigo.mover(1);
-			} else {
-				enemigo.mover(-1);
-			}
-			
-			if (enemigo.edge()) {
-				enemigo.moverAbajo(2);
-				if (enemigo.getDireccion() == Enemigo.DERECHA) {
-					enemigo.setDireccion(Enemigo.IZQUIERDA);
-				} else {
-					enemigo.setDireccion(Enemigo.DERECHA);
-				}
-			}
+			enemigo.mover();
+
 
 			try {
 				sleep(80);
@@ -42,15 +34,16 @@ public class HiloEnemigos extends Thread {
 				e.printStackTrace();
 			}
 
-			interfaz.getPanelNivel().updateUI();
+			interfaz.updateUI();
 
+/*
 			if (enemigo.getDisparoUno() != null) {
 				if (enemigo.getDisparoUno().getPosY() >= 420) {
 					enemigo.getDisparoUno().setImpacto(true);
 					enemigo.eliminarDisparo();
 				}
 			}
-
+*/
 		}
 
 	}

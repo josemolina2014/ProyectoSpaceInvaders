@@ -2,7 +2,6 @@ package modelo.proyectil;
 
 import modelo.ElementoDePantalla;
 import modelo.enemigo.Alien;
-import mundo.Enemigo;
 import util.Constantes;
 
 public class DisparoNave implements ElementoDePantalla, Proyectil {
@@ -97,7 +96,25 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 	}
 	@Override
 	public void movimientoVertical(){
-		posicionY = posicionX - Constantes.DIRECCION_MOVIMIENTO_VERTICAL.ARRIBA.getUnidad();
+		posicionY = posicionY - Constantes.DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL.ARRIBA.getUnidad();
+	}
+
+	@Override
+	public boolean impactoAlAdversario(ElementoDePantalla objeto) {
+		Alien alien = (Alien) objeto;
+
+		boolean salida = false;
+		int r = 8;
+		if (alien != null) {
+			double cateto = posicionX - alien.getPosicionX();
+			double cateto2 = posicionY - alien.getPosicionY();
+			double d = Math.sqrt((cateto * cateto) + (cateto2 * cateto2));
+
+			if (d < (r + alien.getAncho())) {
+				salida = true;
+			}
+		}
+		return salida;
 	}
 
 	public void setRutaImagen(String rutaImagen) {

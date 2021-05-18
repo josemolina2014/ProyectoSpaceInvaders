@@ -132,44 +132,28 @@ public class InterfazSpaceInvaders extends JFrame {
 	 * 
 	 */
 	public void startHiloEnemigo() {
-		for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
-			for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
-				if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-					hilitoEnemigo = new HiloEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
-					hilitoEnemigo.start();
-				}
-			}
-		}
+
 	}
 
 	/**
 	 * 
 	 */
 	public void startHiloAuxiliar() {
-		hilitoAuxiliar = new HiloAuxiliarCreaDisparo(mundo.getPartidaActual(), this);
-		hilitoAuxiliar.start();
+
 	}
 
 	/**
 	 * 
 	 */
 	public void startHiloAnimacion() {
-		for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
-			for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
-				if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-					hilitoAnimacion = new HiloAnimacionEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
-					hilitoAnimacion.start();
-				}
-			}
-		}
+
 	}
 
 	/**
 	 * 
 	 */
 	public void startHiloDisparoEnemigo() {
-		hilitoEnemigoDisparo = new HiloDisparoEnemigos(mundo.getPartidaActual(), this, mundo);
-		hilitoEnemigoDisparo.start();
+
 	}
 
 	/**
