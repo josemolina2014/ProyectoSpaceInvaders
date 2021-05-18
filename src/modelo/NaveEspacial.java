@@ -1,6 +1,8 @@
 package modelo;
 
+import modelo.fabrica.FactoryProyectil;
 import modelo.proyectil.DisparoNave;
+import modelo.proyectil.Proyectil;
 import util.Constantes;
 
 public class NaveEspacial implements ElementoDePantalla {
@@ -12,11 +14,13 @@ public class NaveEspacial implements ElementoDePantalla {
 	private boolean visible;
 	private String rutaImagen;
 	private int cantidadDisparos;
-	private DisparoNave disparo;
+	private Proyectil disparo;
+	private FactoryProyectil factoryProyectil;
 
 	public NaveEspacial() {
 		visible=true;
 		cantidadDisparos=0;
+		factoryProyectil = new FactoryProyectil();
 	}
 
 
@@ -36,9 +40,13 @@ public class NaveEspacial implements ElementoDePantalla {
 		if(disparo==null)
 		{
 			cantidadDisparos++;
-			disparo = new DisparoNave(posX, posY);
 
+			disparo = factoryProyectil.crearProyectil(Constantes.Tipo_proyectil.NAVE,posX,posY);
 		}
+	}
+	public void eliminarDisparo()
+	{
+		disparo = null;
 	}
 
 
@@ -103,5 +111,7 @@ public class NaveEspacial implements ElementoDePantalla {
 		return rutaImagen;
 	}
 
-
+	public Proyectil getDisparo() {
+		return disparo;
+	}
 }

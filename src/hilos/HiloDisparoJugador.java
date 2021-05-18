@@ -1,46 +1,50 @@
 package hilos;
 
+import controlador.ControladorJuego;
+import gui.SpaceInvaders;
 import interfaz.InterfazSpaceInvaders;
+import modelo.enemigo.Alien;
+import modelo.proyectil.DisparoNave;
 import mundo.Enemigo;
 import mundo.NaveJugador;
 import mundo.Partida;
 
 public class HiloDisparoJugador extends Thread {
 
-	private NaveJugador navesita;
-	private InterfazSpaceInvaders interfaz;
-	private Enemigo[][] enemigos;
-	private Partida actual;
+	private ControladorJuego controladorJuego;
+	private SpaceInvaders framePrincipal;
+	private Alien[][] enemigos;
 
-	public HiloDisparoJugador(NaveJugador a, InterfazSpaceInvaders b, Enemigo[][] c, Partida d) {
-		// TODO Auto-generated constructor stub
-
-		navesita = a;
-		interfaz = b;
-		enemigos = c;
-		actual = d;
-
+	public HiloDisparoJugador(ControladorJuego controladorJuego, SpaceInvaders framePrincipal, Alien[][] enemigos) {
+		this.controladorJuego = controladorJuego;
+		this.framePrincipal = framePrincipal;
+		this.enemigos = enemigos;
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		System.out.println("controladorJuego = " + controladorJuego.isEnEjecucion());
+		while (controladorJuego.getNaveEspacial().getDisparo()  != null && !controladorJuego.getNaveEspacial().getDisparo().isImpacto()) {
 
-		while (navesita.getDisparoUno() != null && !navesita.getDisparoUno().getImpacto()) {
+			DisparoNave disparoNave = (DisparoNave) controladorJuego.getNaveEspacial().getDisparo();
+			disparoNave.movimientoVertical();
 
-			navesita.getDisparoUno().shoot();
+			for (int i = 0; i < enemigos.length && disparoNave != null	&& !disparoNave.isImpacto(); i++)
+			{
+				for (int j = 0; j < enemigos[0].length && disparoNave != null
+						&& !disparoNave.isImpacto(); j++) {
+					if (disparoNave.hitsEnemigo(enemigos[i][j])) {
+						disparoNave.setImpacto(true);
+						controladorJuego.getPartidaActual().setPuntaje(enemigos[i][j].getPuntosPorMuerte());
 
-			for (int i = 0; i < enemigos.length && navesita.getDisparoUno() != null
-					&& !navesita.getDisparoUno().getImpacto(); i++) {
-				for (int j = 0; j < enemigos[0].length && navesita.getDisparoUno() != null
-						&& !navesita.getDisparoUno().getImpacto(); j++) {
-					if (navesita.getDisparoUno().hitsEnemigo(enemigos[i][j])) {
-						navesita.getDisparoUno().setImpacto(true);
-						actual.getPuntaje().setPuntuacion(enemigos[i][j].getPuntosPorMuerte());
-						actual.eliminarUnEnemigo(true, enemigos[i][j]);
-						
-						navesita.eliminarDisparo();
-						interfaz.getPanelNivel().repaint();
+						//controladorJuego.eliminarUnEnemigo(enemigos[i][j]);
+						controladorJuego.eliminarUnEnemigo(i,j);
+
+						controladorJuego.getNaveEspacial().eliminarDisparo();
+						//interfaz.getPanelNivel().repaint();
+						//framePrincipal.getCurrentState().getMainPanel().repaint();
+						//framePrincipal.getCurrentState().getMainPanel().updateUI();
+
 					}
 				}
 			}
@@ -48,15 +52,14 @@ public class HiloDisparoJugador extends Thread {
 			try {
 				sleep(2);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
-			interfaz.getPanelNivel().updateUI();
-
-			if (navesita.getDisparoUno() != null) {
-				if (navesita.getDisparoUno().getPosY() <= 0) {
-					navesita.getDisparoUno().setImpacto(true);
-					navesita.eliminarDisparo();
+			//framePrincipal.getCurrentState().getMainPanel().updateUI();
+			//framePrincipal.getCurrentState().getMainPanel().updateUI();
+			if (disparoNave != null) {
+				if (disparoNave.getPosicionY() <= 0) {
+					controladorJuego.getNaveEspacial().eliminarDisparo();
 				}
 			}
 		}

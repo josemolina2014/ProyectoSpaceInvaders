@@ -20,6 +20,9 @@ public interface Constantes {
     int ALIEN_FILAS = ALIEN_FILAS_CALAMARES + ALIEN_FILAS_CANGREJOS + ALIEN_FILAS_PULPOS;
     int ALIEN_COLUMNAS = 10;
 
+    int PUNTOS_X_MUERTE_CALAMAR=10;
+    int PUNTOS_X_MUERTE_PULPO=20;
+    int PUNTOS_X_MUERTE_CANGREJO=20;
 
 
     int NAVE_JUGADOR_ANCHO=30;
@@ -48,11 +51,22 @@ public interface Constantes {
     }
 
     enum DIRECCION_MOVIMIENTO_VERTICAL {
-        ARRIBA, ABAJO
+        ARRIBA (-1), ABAJO(5);
+        private int unidad;
+
+        DIRECCION_MOVIMIENTO_VERTICAL(int unidad) {
+            this.unidad=unidad;
+        }
+        public int getUnidad() {
+            return unidad;
+        }
     }
 
     enum TiposEnemigos {
         CALAMAR, PULPO, CANGREJO
+    }
+    enum Tipo_proyectil {
+        NAVE, ALIEN
     }
 
 }

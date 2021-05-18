@@ -1,23 +1,28 @@
 package modelo.fabrica;
 
+import modelo.proyectil.BombaAlien;
+import modelo.proyectil.DisparoNave;
 import modelo.proyectil.Proyectil;
+import util.Constantes;
 
 public class FactoryProyectil implements  IFactoryProyectil{
 
 	public FactoryProyectil() {
-		// TODO - implement FactoryProyectil.FactoryProyectil
-		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * 
-	 * @param tipo
-	 * @param PosicionX
-	 * @param posicionY
+	 * @param tipo Tipo de proyectil, si es de nave o de un alien
+	 * @param PosicionX coordenada X
+	 * @param posicionY coordenada Y
 	 */
-	public Proyectil crearProyectil(int tipo, int PosicionX, int posicionY) {
-		// TODO - implement FactoryProyectil.crearProyectil
-		throw new UnsupportedOperationException();
+	public Proyectil crearProyectil(Constantes.Tipo_proyectil tipo, int posicionX, int posicionY) {
+
+		switch (tipo){
+			case NAVE: return new DisparoNave(posicionX,posicionY);
+			case ALIEN: return new BombaAlien(posicionX,posicionY);
+			default: return  null;
+		}
 	}
 
 }

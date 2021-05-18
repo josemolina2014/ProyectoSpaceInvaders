@@ -11,7 +11,12 @@ public class BombaAlien implements ElementoDePantalla, Proyectil{
 	private int ancho;
 	private boolean visible;
 	private String rutaImagen;
+	private boolean impacto;
 
+	public BombaAlien(int posicionX, int posicionY) {
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
+	}
 
 	@Override
 	public int getPosicionX() {
@@ -70,7 +75,22 @@ public class BombaAlien implements ElementoDePantalla, Proyectil{
 
 	}
 
+
 	public void setRutaImagen(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
+	}
+
+	@Override
+	public boolean isImpacto() {
+		return impacto;
+	}
+
+	@Override
+	public void movimientoVertical(){
+		posicionY = posicionX - Constantes.DIRECCION_MOVIMIENTO_VERTICAL.ABAJO.getUnidad();
+	}
+
+	public void setImpacto(boolean impacto) {
+		this.impacto = impacto;
 	}
 }

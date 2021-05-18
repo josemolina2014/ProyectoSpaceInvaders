@@ -8,5 +8,8 @@ public class Pulpo extends Alien{
 		super(posicionX, posicionY);
 	}
 
-
+	@Override
+	public int getPuntosPorMuerte() {
+		return Constantes.PUNTOS_X_MUERTE_PULPO;
+	}
 }

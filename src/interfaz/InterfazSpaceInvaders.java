@@ -176,9 +176,7 @@ public class InterfazSpaceInvaders extends JFrame {
 	 * 
 	 */
 	public void startHiloJugador() {
-		hilitoDisparo = new HiloDisparoJugador((NaveJugador) mundo.getJugadorActual(), this,
-				mundo.getPartidaActual().getEnemigos(), mundo.getPartidaActual());
-		hilitoDisparo.start();
+
 	}
 
 	/**

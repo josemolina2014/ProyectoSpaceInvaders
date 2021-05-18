@@ -1,4 +1,7 @@
 package modelo.proyectil;
+
+import util.Constantes;
+
 public interface Proyectil {
 
 	public boolean isVisible();
@@ -8,4 +11,8 @@ public interface Proyectil {
 	public int getPosicionY();
 	public void setPosicionY(int posicionY);
 	public boolean isImpacto();
+	public void movimientoVertical();
+
+
+
 }

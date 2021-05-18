@@ -36,14 +36,14 @@ public class ControladorEnemigos {
             FactoryEnemigo fabricaEnemigos = new FactoryEnemigo();
             for (int fila = 0; fila < cantidadFilas; fila++)
             {
-                for (int columna = 0; columna < aliens[fila].length; columna++)
+                for (int columna = 0; columna < aliens[coordenadaY].length; columna++)
                 {
                     Alien alien = fabricaEnemigos.crearAlien(type,calcularPosicionX(columna), calcularPosicionY(coordenadaY));
                     alien.setVidas(nivel.getVidasEnemigos());
                     alien.setVelocidad(nivel.getVelocidadEnemigos());
 
-                    aliens[fila][columna]=alien;
-                    System.out.println("velocidad "+nivel.getVelocidadEnemigos() + " calcularPosicionX: "+calcularPosicionX(columna) +"\tcalcularPosicionY: " + calcularPosicionY(coordenadaY));
+                    aliens[coordenadaY][columna]=alien;
+                    System.out.println(coordenadaY+" ["+fila+ " - "+ columna +"] velocidad "+nivel.getVelocidadEnemigos() + " calcularPosicionX: "+calcularPosicionX(columna) +"\tcalcularPosicionY: " + calcularPosicionY(coordenadaY));
                 }
                 System.out.println("*************************************");
                 coordenadaY++;
@@ -51,6 +51,11 @@ public class ControladorEnemigos {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        ControladorEnemigos enemigo= new ControladorEnemigos();
+        enemigo.crearEnemigos(new Nivel1());
     }
 
 }

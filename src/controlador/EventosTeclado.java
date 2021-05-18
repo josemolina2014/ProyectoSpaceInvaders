@@ -24,11 +24,16 @@ public class EventosTeclado implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
-
         if(controladorJuego.isEnEjecucion()){
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                controladorJuego.getNaveEspacial().
+                if(controladorJuego.getNaveEspacial().getDisparo()==null){
+                    controladorJuego.getNaveEspacial().disparar(
+                            controladorJuego.getNaveEspacial().getPosicionX(),
+                            Constantes.NAVE_JUGADOR_POSICION_INICIAL_Y
+                    );
+                    controladorJuego.inicarHiloNave(framePrincipal);
+                    framePrincipal.getCurrentState().getMainPanel().updateUI();
+                }
             }
         }
 

@@ -3,6 +3,7 @@ package gui.estadosJuego;
 import controlador.ControladorJuego;
 import controlador.EventosTeclado;
 import gui.SpaceInvaders;
+import modelo.proyectil.DisparoNave;
 import mundo.NaveJugador;
 import util.Constantes;
 
@@ -25,7 +26,6 @@ public class Juego extends JPanel implements EstadoJuego{
         this.framePrincipal.setJuegoEnCurso(true);
 
         controladorJuego = ControladorJuego.getInstancia(framePrincipal.getPartidaSeleccionada());
-
 
         setPreferredSize(new Dimension(SpaceInvaders.ANCHO, SpaceInvaders.ALTO));
         setLayout(null);
@@ -57,6 +57,35 @@ public class Juego extends JPanel implements EstadoJuego{
         g.drawString(controladorJuego.getPartidaActual().getJugador().getNickname(), 140, 40);
         g.drawString(controladorJuego.getPartidaActual().getPuntaje() + "", 400, 40);
 
+        // DISPARO DE LA NAVE
+        DisparoNave disparoNave = (DisparoNave) controladorJuego.getNaveEspacial().getDisparo();
+
+        if (disparoNave != null) {
+            g.setColor(Color.WHITE);
+            g.fillOval(disparoNave.getPosicionX() + 13, disparoNave.getPosicionY(), 7, 7);
+
+            if (disparoNave.getPosicionY() == 0 || disparoNave.isImpacto()) {
+                ImageIcon choque = new ImageIcon("./data/imagenes/Naves/muereBicho.png");
+                g.drawImage(choque.getImage(), disparoNave.getPosicionX(), disparoNave.getPosicionY() - 6, null);
+            }
+        }
+        // DISPARO ENEMIGO
+
+
+
+        // DIBUJAR ENEMIGOS
+
+        for (int i = 0; i < controladorJuego.getAliens().length; i++) {
+            for (int j = 0; j < controladorJuego.getAliens()[i].length; j++) {
+                if (controladorJuego.getAliens()[i][j] != null) {
+                    if (controladorJuego.getAliens()[i][j] != null) {
+                        ImageIcon icono = new ImageIcon(controladorJuego.getAliens()[i][j].getRutaImagen());
+                        g.drawImage(icono.getImage(), controladorJuego.getAliens()[i][j].getPosicionX(),
+                                controladorJuego.getAliens()[i][j].getPosicionY(), null);
+                    }
+                }
+            }
+        }
 
         if(controladorJuego.isEnEjecucion())
         {

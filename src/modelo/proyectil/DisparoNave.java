@@ -1,6 +1,8 @@
 package modelo.proyectil;
 
 import modelo.ElementoDePantalla;
+import modelo.enemigo.Alien;
+import mundo.Enemigo;
 import util.Constantes;
 
 public class DisparoNave implements ElementoDePantalla, Proyectil {
@@ -16,6 +18,22 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 	public DisparoNave(int posicionX, int posicionY) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
+		impacto=false;
+	}
+
+	public boolean hitsEnemigo(Alien alien) {
+		boolean salida = false;
+		int r = 8;
+		if (alien != null) {
+			double cateto = this.posicionX - alien.getPosicionX();
+			double cateto2 = this.posicionY - alien.getPosicionY();
+			double d = Math.sqrt((cateto * cateto) + (cateto2 * cateto2));
+
+			if (d < (r + alien.getAncho())) {
+				salida = true;
+			}
+		}
+		return salida;
 	}
 
 	@Override
@@ -74,8 +92,12 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 	}
 
 	@Override
-	public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
+	public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccionHorizontal) {
 
+	}
+	@Override
+	public void movimientoVertical(){
+		posicionY = posicionX - Constantes.DIRECCION_MOVIMIENTO_VERTICAL.ARRIBA.getUnidad();
 	}
 
 	public void setRutaImagen(String rutaImagen) {
