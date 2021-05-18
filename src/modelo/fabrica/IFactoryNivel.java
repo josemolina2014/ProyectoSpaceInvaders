@@ -6,4 +6,6 @@ public interface IFactoryNivel {
 
 	public Nivel crearNivel(String tipoNivel) throws Exception ;
 
+
+
 }

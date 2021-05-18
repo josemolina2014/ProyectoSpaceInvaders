@@ -38,6 +38,7 @@ public interface Constantes {
 
     int NIVEL1_VIDAS=1;
     int NIVEL2_VIDAS=2;
+    int NAVE_JUGADOR_VIDAS = 3;
 
     enum DIRECCION_MOVIMIENTO_HORIZONTAL {
         IZQUIERDA (-10), DERECHA (10);

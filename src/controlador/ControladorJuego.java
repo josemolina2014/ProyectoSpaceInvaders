@@ -18,6 +18,7 @@ public class ControladorJuego {
 	private NaveEspacial naveEspacial;
 	private Alien [][] aliens;
 	private Puntaje puntaje;
+	private int estadoDelJuego;
 
 	private HiloDisparoJugador hiloDisparoJugador;
 	private boolean enEjecucion;
@@ -26,7 +27,7 @@ public class ControladorJuego {
 		this.partidaActual = partidaActual;
 		inicializarNaveEspacial();
 		inicializarEnemigos(partidaActual.getNivel());
-		inciarTodosLosHilos();
+		estadoDelJuego=1;
 		enEjecucion=true;
 	}
 	private static void createInstance(Partida partida){
@@ -76,6 +77,50 @@ public class ControladorJuego {
 
 	}
 
+	public boolean jugadorSinVidas()
+	{
+		return partidaActual.getVidas()==0;
+	}
+
+	public boolean nivelCompletado() {
+		int contador = 0;
+
+		for (int i = 0; i < aliens.length; i++) {
+			for (int j = 0; j < aliens[i].length; j++) {
+
+				if (aliens[i][j] == null) {
+					contador++;
+				}
+			}
+		}
+
+		return (contador == (aliens.length*aliens[0].length));
+	}
+
+	public void finalizarJuego()
+	{
+		estadoDelJuego=2;
+		enEjecucion=false;
+	}
+
+	public boolean siguienteNivel(){
+
+		Nivel siguienteNivel = partidaActual.getSiguienteNivel();
+		if(siguienteNivel!=null) {
+			partidaActual.setNivel(siguienteNivel);
+			inicializarEnemigos(siguienteNivel);
+			return true;
+		}
+		else
+		{
+			enEjecucion=false;
+			return false;
+		}
+	}
+
+
+
+
 	public void TerminarJuego() {
 		enEjecucion=false;
 		int bonificacion = puntosPorVida()-puntosPorDisparos();
@@ -118,44 +163,9 @@ public class ControladorJuego {
 		hiloDisparoJugador.start();
 	}
 
-	public void inciarTodosLosHilos(){
-
-		startHiloEnemigo();
-		startHiloAnimacion();
-		startHiloAuxiliar();
-		startHiloDisparoEnemigo();
-	}
-
-	private void startHiloDisparoEnemigo() {
-
-	}
-
-	private void startHiloAuxiliar() {
-	}
-
-	private void startHiloAnimacion() {
-
-	}
-
-	private void startHiloEnemigo() {
-		/*
-		HiloEnemigos hiloEnemigo;
-		for (int i = 0; i <aliens.length; i++) {
-			for (int j = 0; j < aliens[0].length; j++) {
-				if (aliens[i][j] != null) {
-					hiloEnemigo = new HiloEnemigos(aliens[i][j], this);
-					hiloEnemigo.start();
-				}
-			}
-		}*/
-
-	}
 
 
 
-	public void matarHilos(){
-
-	}
 
 
 

@@ -44,7 +44,7 @@ public class InterfazSpaceInvaders extends JFrame {
 
 	private SpaceInvaders mundo;
 
-	private HiloEnemigos hilitoEnemigo;
+	private HiloEnemigos hilitoEnemigo;//
 
 	private HiloDisparoJugador hilitoDisparo;
 

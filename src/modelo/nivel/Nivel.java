@@ -8,7 +8,7 @@ public interface Nivel {
 
 	public int getVidasEnemigos();
 
-	public int getNombre();
+	public String getNombre();
 
 	public Alien[][] getEnemigos();
 }

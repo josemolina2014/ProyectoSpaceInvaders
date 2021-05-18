@@ -5,13 +5,15 @@ import modelo.enemigo.Alien;
 public class Nivel1 implements Nivel{
     private int velocidadEnemigos;
     private int vidasEnemigos;
-    private int nombre;
+    private String nombre;
     private Alien[][] enemigos;
 
     public Nivel1() {
         velocidadEnemigos =1;
         vidasEnemigos=1;
+        nombre="Nivel 1";
     }
+
 
     @Override
     public int getVelocidadEnemigos() {
@@ -24,7 +26,7 @@ public class Nivel1 implements Nivel{
     }
 
     @Override
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 

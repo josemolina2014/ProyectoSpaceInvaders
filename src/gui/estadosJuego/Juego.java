@@ -3,10 +3,8 @@ package gui.estadosJuego;
 import controlador.ControladorJuego;
 import controlador.EventosTeclado;
 import gui.SpaceInvaders;
-import hilos.HiloAnimacionEnemigos;
-import hilos.HiloAuxiliarCreaDisparo;
-import hilos.HiloDisparoEnemigos;
-import hilos.HiloEnemigos;
+import hilos.*;
+import modelo.proyectil.BombaAlien;
 import modelo.proyectil.DisparoNave;
 
 
@@ -28,6 +26,8 @@ public class Juego extends JPanel implements EstadoJuego{
     private HiloAuxiliarCreaDisparo hiloDisparoAlien;
     private HiloAnimacionEnemigos hiloAnimacionEnemigos;
     private HiloDisparoEnemigos hiloDisparoEnemigos;
+    private HiloDisparoJugador hiloDisparoJugador;
+
 
     public Juego(SpaceInvaders framePrincipal) {
         super();
@@ -80,6 +80,15 @@ public class Juego extends JPanel implements EstadoJuego{
         hiloDisparoEnemigos.start();
     }
 
+    public void detenerHilos(){
+        hiloAnimacionEnemigos=null;
+        hiloDisparoAlien=null;
+        hiloEnemigo=null;
+        hiloDisparoEnemigos=null;
+        hiloDisparoJugador=null;
+
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         ImageIcon iconFondo = new ImageIcon("./data/imagenes/fondoJuego.jpg");
@@ -109,8 +118,8 @@ public class Juego extends JPanel implements EstadoJuego{
 
         if (disparoNave != null) {
             g.setColor(Color.WHITE);
-            g.fillOval(disparoNave.getPosicionX() + 13, disparoNave.getPosicionY(), 7, 7);
 
+            g.fillOval(disparoNave.getPosicionX() + 13, disparoNave.getPosicionY(), 7, 7);
             if (disparoNave.getPosicionY() == 0 || disparoNave.isImpacto()) {
                 ImageIcon choque = new ImageIcon("./data/imagenes/Naves/muereBicho.png");
                 g.drawImage(choque.getImage(), disparoNave.getPosicionX(), disparoNave.getPosicionY() - 6, null);
@@ -118,6 +127,19 @@ public class Juego extends JPanel implements EstadoJuego{
         }
         // DISPARO ENEMIGO
 
+        for (int i = 0; i < controladorJuego.getAliens().length; i++) {
+            for (int j = 0; j < controladorJuego.getAliens()[i].length; j++) {
+                if (controladorJuego.getAliens()[i][j] != null) {
+                    if (controladorJuego.getAliens()[i][j].getDisparo() != null) {
+                        BombaAlien bombaAlien = (BombaAlien) controladorJuego.getAliens()[i][j].getDisparo();
+                        if (bombaAlien != null) {
+                            g.setColor(Color.RED);
+                            g.fillOval(bombaAlien.getPosicionX(), bombaAlien.getPosicionY(), 7, 7);
+                        }
+                    }
+                }
+            }
+        }
 
 
         // DIBUJAR ENEMIGOS
@@ -134,12 +156,45 @@ public class Juego extends JPanel implements EstadoJuego{
             }
         }
 
+        if (controladorJuego.nivelCompletado()) {
+            //controladorJuego.finalizarJuego();
+            detenerHilos();
+            int bonificacion = (controladorJuego.puntosPorVida() - controladorJuego.puntosPorDisparos());
+            if (bonificacion > 0)
+                controladorJuego.getPartidaActual().setPuntaje(bonificacion);
+
+            if(controladorJuego.siguienteNivel())
+                inciarHilos();
+            else
+            {
+                finDelJuegoXVictoria();
+            }
+        }
+
+        // PERDIÓ
+        if (controladorJuego.jugadorSinVidas()) {
+            controladorJuego.finalizarJuego();
+            detenerHilos();
+            int bonificacion = (controladorJuego.puntosPorVida() - controladorJuego.puntosPorDisparos());
+            if (bonificacion > 0)
+                controladorJuego.getPartidaActual().setPuntaje(bonificacion);
+            finDelJuegoXPerdida();
+        }
+
         if(controladorJuego.isEnEjecucion())
         {
             g.drawString("Vidas jugador " + controladorJuego.getPartidaActual().getVidas() , 100, 470);
         }
     }
 
+    private void finDelJuegoXPerdida(){
+        repaint();
+        System.out.println("Ventana estado perdió");
+    }
+    private void finDelJuegoXVictoria(){
+        repaint();
+        System.out.println("Ventana de Victoria");
+    }
 
     @Override
     public JPanel getMainPanel() {
