@@ -55,15 +55,11 @@ public class SpaceInvaders {
 
     public void setCurrentState(EstadoJuego estadoJuego){
 
-
         currentState = estadoJuego;
-
         jFrame.getContentPane().removeAll();
         jFrame.repaint();
 
-
         jFrame.getContentPane().add(currentState.getMainPanel());
-
 
         jFrame.addKeyListener(currentState.getKeyListener());
         jFrame.pack();

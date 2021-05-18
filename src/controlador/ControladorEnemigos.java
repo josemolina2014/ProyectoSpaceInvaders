@@ -31,7 +31,7 @@ public class ControladorEnemigos {
         return aliens;
     }
 
-    private  void generarEnemigos(Constantes.TiposEnemigos type, int cantidadFilas, Nivel nivel){
+    private void generarEnemigos(Constantes.TiposEnemigos type, int cantidadFilas, Nivel nivel){
         try {
             FactoryEnemigo fabricaEnemigos = new FactoryEnemigo();
             for (int fila = 0; fila < cantidadFilas; fila++)
@@ -43,9 +43,7 @@ public class ControladorEnemigos {
                     alien.setVelocidad(nivel.getVelocidadEnemigos());
 
                     aliens[coordenadaY][columna]=alien;
-                    System.out.println(coordenadaY+" ["+fila+ " - "+ columna +"] velocidad "+nivel.getVelocidadEnemigos() + " calcularPosicionX: "+calcularPosicionX(columna) +"\tcalcularPosicionY: " + calcularPosicionY(coordenadaY));
                 }
-                System.out.println("*************************************");
                 coordenadaY++;
             }
         } catch (Exception e) {

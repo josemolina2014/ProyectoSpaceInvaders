@@ -37,10 +37,12 @@ public class ControladorJuego {
 	}
 
 	public void inicializarEnemigos(Nivel nivel) {
+
 		aliens = new ControladorEnemigos().crearEnemigos(nivel);
 	}
 
 	public void inicializarNaveEspacial(){
+
 		naveEspacial = new ControladorNaveEspacial().crearNaveEspacial();
 	}
 
@@ -88,6 +90,13 @@ public class ControladorJuego {
 	public void inicarHiloNave(SpaceInvaders framePrincipal){
 		hiloDisparoJugador = new HiloDisparoJugador(this, framePrincipal, aliens);
 		hiloDisparoJugador.run();
+	}
+
+	public void inciarTodosLosHilos(){
+
+	}
+	public void matarHilos(){
+
 	}
 
 

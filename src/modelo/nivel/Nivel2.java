@@ -9,8 +9,8 @@ public class Nivel2 implements Nivel{
     private int nombre;
     private Alien[][] enemigos;
     public Nivel2() {
-        velocidadEnemigos =1;
-        vidasEnemigos=1;
+        velocidadEnemigos =5;
+        vidasEnemigos=2;
     }
 
     @Override

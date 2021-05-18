@@ -11,10 +11,10 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
     private int posicionY;
     private int alto;
     private int ancho;
-    private List<String> urlImagenes;
     private boolean visible;
     private String rutaImagen;
     private int puntosPorMuerte;
+    private List<String> urlImagenes;
     private int vidas;
     private int velocidad;
 

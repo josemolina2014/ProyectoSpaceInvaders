@@ -31,7 +31,7 @@ public class EventosTeclado implements KeyListener {
                             controladorJuego.getNaveEspacial().getPosicionX(),
                             Constantes.NAVE_JUGADOR_POSICION_INICIAL_Y
                     );
-                    controladorJuego.inicarHiloNave(framePrincipal);
+                    //controladorJuego.inicarHiloNave(framePrincipal);
                     framePrincipal.getCurrentState().getMainPanel().updateUI();
                 }
             }
