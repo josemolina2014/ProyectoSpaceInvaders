@@ -1,11 +1,13 @@
 package gui.estadosJuego;
 
+import controlador.ControladorMejoresPuntajes;
 import gui.Dialogos.*;
 import gui.SpaceInvaders;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 import static java.awt.Component.RIGHT_ALIGNMENT;
 
@@ -333,7 +335,6 @@ public class MenuPrincipal  implements EstadoJuego, ActionListener {
         menuCargarPartida.addActionListener(this);
         menuCargarPartida.setActionCommand(SELECCIONAR_PARTIDA);
     }
-
 
     public void graficar(Graphics g) {
 

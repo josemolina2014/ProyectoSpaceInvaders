@@ -1,5 +1,6 @@
 package controlador;
 
+import modelo.Partida;
 import modelo.Puntaje;
 
 import java.io.*;
@@ -18,26 +19,36 @@ public class ControladorMejoresPuntajes {
         mejores10Puntajes = new ArrayList<>();
     }
 
+    public  void validarPartida(Partida partida){
+        Puntaje puntaje = new Puntaje(partida.getPuntaje(),partida.getJugador(), partida.getNombre());
+
+        agregarPuntaje(puntaje);
+    }
+
     public void agregarPuntaje(Puntaje nuevoPuntaje) {
 
-        try {
-            if(mejores10Puntajes.size()<10){
-                mejores10Puntajes.add(nuevoPuntaje);
-                mejores10Puntajes.sort(Comparator.comparing(Puntaje::getPuntuacion).reversed());
-                serializarPuntaje();
-            }
-            else{
-                //clasifica para el top 10
-                if(nuevoPuntaje.getPuntuacion()>mejores10Puntajes.get(9).getPuntuacion()){
+        if((nuevoPuntaje!=null) && (nuevoPuntaje.getPuntuacion()>0))
+        {
+            try
+            {
+                if(mejores10Puntajes.size()<10){
                     mejores10Puntajes.add(nuevoPuntaje);
                     mejores10Puntajes.sort(Comparator.comparing(Puntaje::getPuntuacion).reversed());
-
-                    mejores10Puntajes = mejores10Puntajes.stream().limit(10).collect(Collectors.toList());
                     serializarPuntaje();
                 }
+                else{
+                    //clasifica para el top 10
+                    if(nuevoPuntaje.getPuntuacion()>mejores10Puntajes.get(9).getPuntuacion()){
+                        mejores10Puntajes.add(nuevoPuntaje);
+                        mejores10Puntajes.sort(Comparator.comparing(Puntaje::getPuntuacion).reversed());
+
+                        mejores10Puntajes = mejores10Puntajes.stream().limit(10).collect(Collectors.toList());
+                        serializarPuntaje();
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -79,6 +90,15 @@ public class ControladorMejoresPuntajes {
     }
 
     public List<String> getResumenMejoresPuntajes(){
-        return mejores10Puntajes.stream().map(Puntaje::toString).collect(Collectors.toList());
+
+        List<String> list = new ArrayList<>();
+        int posicion = 1;
+        for (Puntaje puntaje:mejores10Puntajes) {
+            list.add(posicion + " " + puntaje.toString());
+            posicion++;
+        }
+        return list;
+
+       // return mejores10Puntajes.stream().map(Puntaje::toString).collect(Collectors.toList());
     }
 }

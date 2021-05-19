@@ -163,8 +163,6 @@ public class ControladorJuego {
 
 	}
 
-
-
 	public boolean isEnEjecucion() {
 		return enEjecucion;
 	}

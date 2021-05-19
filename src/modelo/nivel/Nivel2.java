@@ -1,7 +1,5 @@
 package modelo.nivel;
 
-import modelo.enemigo.Alien;
-
 public class Nivel2 implements Nivel{
 
     private int velocidadEnemigos;

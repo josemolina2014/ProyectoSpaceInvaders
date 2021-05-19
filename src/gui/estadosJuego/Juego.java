@@ -1,6 +1,8 @@
 package gui.estadosJuego;
 
 import controlador.ControladorJuego;
+import controlador.ControladorMejoresPuntajes;
+import controlador.ControladorPartida;
 import controlador.EventosTeclado;
 import gui.SpaceInvaders;
 import hilos.*;
@@ -194,11 +196,16 @@ public class Juego extends JPanel implements EstadoJuego{
     private void finDelJuegoXPerdida(){
         repaint();
 
+        ControladorMejoresPuntajes mejoresPuntajes = new ControladorMejoresPuntajes();
+        mejoresPuntajes.validarPartida(controladorJuego.getPartidaActual());
 
         framePrincipal.setCurrentState(new PerdidaPartida(framePrincipal));
     }
     private void finDelJuegoXVictoria(){
         repaint();
+
+        ControladorMejoresPuntajes mejoresPuntajes = new ControladorMejoresPuntajes();
+        mejoresPuntajes.validarPartida(controladorJuego.getPartidaActual());
         framePrincipal.setCurrentState(new GanarPartida(framePrincipal));
 
     }

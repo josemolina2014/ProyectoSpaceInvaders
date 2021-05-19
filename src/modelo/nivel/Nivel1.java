@@ -1,8 +1,6 @@
 package modelo.nivel;
 
-import modelo.enemigo.Alien;
-
-public class Nivel1 implements Nivel{
+public class Nivel1 implements Nivel {
     private int velocidadEnemigos;
     private int vidasEnemigos;
     private String nombre;

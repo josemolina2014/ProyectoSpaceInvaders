@@ -1,8 +1,8 @@
 package modelo.nivel;
 
-import modelo.enemigo.Alien;
+import java.io.Serializable;
 
-public interface Nivel {
+public interface Nivel extends Serializable {
 
 	public int getVelocidadEnemigos();
 

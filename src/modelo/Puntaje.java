@@ -1,5 +1,8 @@
 package modelo;
-public class Puntaje {
+
+import java.io.Serializable;
+
+public class Puntaje implements Serializable {
 
 	private int puntuacion;
 	private Jugador jugador;

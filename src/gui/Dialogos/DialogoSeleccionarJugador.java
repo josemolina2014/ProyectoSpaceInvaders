@@ -10,6 +10,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class DialogoSeleccionarJugador extends JDialog implements ListSelectionListener, ActionListener {
 
@@ -90,8 +91,14 @@ public class DialogoSeleccionarJugador extends JDialog implements ListSelectionL
 
 		setLayout(new BorderLayout());
 
-		controladorJugador = new ControladorJugador();
-
+		try {
+			controladorJugador = new ControladorJugador();
+			controladorJugador.deserializarJugador();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 
 		this.menuPrincipal = interfaz;
 		scroll = new JScrollPane();

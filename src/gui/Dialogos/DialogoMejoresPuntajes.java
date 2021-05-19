@@ -5,6 +5,7 @@ import gui.SpaceInvaders;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,8 +58,15 @@ public class DialogoMejoresPuntajes extends JDialog implements ActionListener {
 	public DialogoMejoresPuntajes(SpaceInvaders interfaz) {
 
 		this.interfaz = interfaz;
-		controladorMejoresPuntajes= new ControladorMejoresPuntajes();
-		puntajes = controladorMejoresPuntajes.getResumenMejoresPuntajes();
+		try {
+			controladorMejoresPuntajes= new ControladorMejoresPuntajes();
+			controladorMejoresPuntajes.deserializarPuntaje();
+			puntajes = controladorMejoresPuntajes.getResumenMejoresPuntajes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		setLayout(null);
 
 		auxiliar = new JPanel();
