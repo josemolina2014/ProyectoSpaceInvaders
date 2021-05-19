@@ -24,7 +24,8 @@ public class EventosTeclado implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e)
+    {
         if(controladorJuego.isEnEjecucion())
         {
             if (e.getKeyCode() == KeyEvent.VK_SPACE)
@@ -53,7 +54,7 @@ public class EventosTeclado implements KeyListener {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.out.println("Salir del juego");
+            framePrincipal.volverAMenuPrincipal();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_P) {
@@ -66,10 +67,6 @@ public class EventosTeclado implements KeyListener {
                 controladorJuego.pausarJuego();
             }
         }
-
-
-
-
     }
 
     @Override

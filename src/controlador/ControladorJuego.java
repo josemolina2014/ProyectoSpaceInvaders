@@ -24,7 +24,7 @@ public class ControladorJuego {
 	private boolean enEjecucion;
 	private boolean juegoEnPausa;
 
-	private ControladorJuego(Partida partidaActual) {
+	public ControladorJuego(Partida partidaActual) {
 		this.partidaActual = partidaActual;
 		inicializarNaveEspacial();
 		inicializarEnemigos(partidaActual.getNivel());
@@ -32,11 +32,13 @@ public class ControladorJuego {
 		iniciarJuego();
 	}
 
-	public void iniciarJuego() {
-		enEjecucion=true;
-	}
-	public void detenerJuego() {
-		enEjecucion=false;
+	/*
+	private ControladorJuego(Partida partidaActual) {
+		this.partidaActual = partidaActual;
+		inicializarNaveEspacial();
+		inicializarEnemigos(partidaActual.getNivel());
+		estadoDelJuego=1;
+		iniciarJuego();
 	}
 
 	private static void createInstance(Partida partida){
@@ -47,6 +49,20 @@ public class ControladorJuego {
 	public static ControladorJuego getInstancia(Partida partida) {
 		if(instancia==null) createInstance(partida);
 		return instancia;
+	}*/
+
+	public void iniciarJuego() {
+		enEjecucion=true;
+	}
+	public void detenerJuego() {
+		enEjecucion=false;
+	}
+
+	public void reinicarJuego(){
+		inicializarNaveEspacial();
+		inicializarEnemigos(partidaActual.getNivel());
+		estadoDelJuego=1;
+		iniciarJuego();
 	}
 
 	public void inicializarEnemigos(Nivel nivel) {
@@ -135,8 +151,6 @@ public class ControladorJuego {
 		int bonificacion = puntosPorVida()-puntosPorDisparos();
 		if(bonificacion>0)
 			partidaActual.agregarPuntos(bonificacion);
-
-		System.out.println("pasar al menu principal");
 
 	}
 	public int puntosPorVida(){

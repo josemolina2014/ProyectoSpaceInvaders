@@ -165,7 +165,7 @@ public class DialogoCrearPartida extends JDialog implements ActionListener {
 				Partida partida =controladorPartida.inicializarPartida(menuPrincipal.getJugadorSeleccionado(),txtNombre.getText());
 				menuPrincipal.setPartidaSeleccionada(partida);
 				menuPrincipal.setCurrentState(new Juego(menuPrincipal));
-				System.out.println("cambiar a Panel de Iniciar Juego");
+
 				this.dispose();
 			}
 		}

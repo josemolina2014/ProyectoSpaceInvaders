@@ -13,8 +13,8 @@ public class IntroJuego implements EstadoJuego {
 
 
 
-    public IntroJuego(SpaceInvaders framePrincipal) {
-        System.out.println("IntroJuego " );
+    public IntroJuego(SpaceInvaders framePrincipal)
+    {
         this.framePrincipal=framePrincipal;
 
         panelImagenInicial = new JPanel();
@@ -85,7 +85,6 @@ public class IntroJuego implements EstadoJuego {
         public void keyTyped(KeyEvent e) {
             if(!framePrincipal.isJuegoEnCurso())
             {
-                System.out.println("IntroJuegoKeyListener.keyTyped");
                 if (e.getKeyCode() == KeyEvent.VK_SPACE)
                     cambiarEstadoInicial();
             }
@@ -93,8 +92,8 @@ public class IntroJuego implements EstadoJuego {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if(!framePrincipal.isJuegoEnCurso()){
-                System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+            if(!framePrincipal.isJuegoEnCurso())
+            {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER)
                     cambiarEstadoInicial();
             }

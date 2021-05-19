@@ -33,9 +33,12 @@ public class Juego extends JPanel implements EstadoJuego{
         super();
         this.framePrincipal = framePrincipal;
         this.framePrincipal.setJuegoEnCurso(true);
+        detenerHilos();
 
-        controladorJuego = ControladorJuego.getInstancia(framePrincipal.getPartidaSeleccionada());
 
+        //controladorJuego = ControladorJuego.getInstancia(framePrincipal.getPartidaSeleccionada());
+
+        controladorJuego = new ControladorJuego(framePrincipal.getPartidaSeleccionada());
         setPreferredSize(new Dimension(SpaceInvaders.ANCHO, SpaceInvaders.ALTO));
         setLayout(null);
         eventosTeclado  = new EventosTeclado(this,controladorJuego);
@@ -47,7 +50,6 @@ public class Juego extends JPanel implements EstadoJuego{
         startHiloDisparoAlien();
         startHiloAnimacion();
         startHiloDisparoEnemigo();
-
     }
 
     private void startHiloEnemigo() {
@@ -108,10 +110,12 @@ public class Juego extends JPanel implements EstadoJuego{
         g.setFont(new Font("ArcadeClassic", Font.PLAIN, 24));
         g.drawString("NICKNAME", 30, 40);
         g.drawString("PUNTUACION ", 250, 40);
+        g.drawString("NIVEL ", 510, 40);
 
         g.setColor(Color.GREEN);
         g.drawString(controladorJuego.getPartidaActual().getJugador().getNickname(), 140, 40);
         g.drawString(controladorJuego.getPartidaActual().getPuntaje() + "", 400, 40);
+        g.drawString(controladorJuego.getPartidaActual().getNivel().getNombre(), 510, 40);
 
         // DISPARO DE LA NAVE
         DisparoNave disparoNave = (DisparoNave) controladorJuego.getNaveEspacial().getDisparo();
@@ -189,12 +193,21 @@ public class Juego extends JPanel implements EstadoJuego{
 
     private void finDelJuegoXPerdida(){
         repaint();
-        System.out.println("Ventana estado perdió");
+
+
+        framePrincipal.setCurrentState(new PerdidaPartida(framePrincipal));
     }
     private void finDelJuegoXVictoria(){
         repaint();
-        System.out.println("Ventana de Victoria");
+        framePrincipal.setCurrentState(new GanarPartida(framePrincipal));
+
     }
+
+    public void volverAMenuPrincipal()
+    {
+        framePrincipal.setCurrentState(new MenuPrincipal(framePrincipal));
+    }
+
 
     @Override
     public JPanel getMainPanel() {

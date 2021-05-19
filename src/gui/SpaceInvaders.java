@@ -2,7 +2,7 @@ package gui;
 
 import gui.estadosJuego.EstadoJuego;
 import gui.estadosJuego.IntroJuego;
-import gui.estadosJuego.MenuPrincipal;
+import gui.estadosJuego.PerdidaPartida;
 import modelo.Jugador;
 import modelo.Partida;
 import util.Constantes;
@@ -10,7 +10,6 @@ import util.Parametros;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 
 public class SpaceInvaders {
     public static final int ANCHO = 640;
@@ -54,15 +53,17 @@ public class SpaceInvaders {
     }
 
     public void setCurrentState(EstadoJuego estadoJuego){
-
+        currentState=null;
         currentState = estadoJuego;
         jFrame.getContentPane().removeAll();
         jFrame.repaint();
 
         jFrame.getContentPane().add(currentState.getMainPanel());
+        jFrame.requestFocus();
 
         jFrame.addKeyListener(currentState.getKeyListener());
         jFrame.pack();
+
 
     }
 

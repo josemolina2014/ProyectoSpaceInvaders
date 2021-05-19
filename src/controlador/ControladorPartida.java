@@ -18,6 +18,7 @@ public class ControladorPartida {
         return nuevaPartida;
     }
 
+
     /**
      * Busca el jugador, si este no existe devuelve null
      * @param nombre usuario a buscar

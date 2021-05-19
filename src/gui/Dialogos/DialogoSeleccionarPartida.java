@@ -136,12 +136,12 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
-		System.out.println("comando "+comando);
+
 		if (comando.equals(CANCELAR))
 			this.dispose();
 		else if (comando.equals(ACEPTAR)) {
 			String partidaSeleccionada = darPartidaSeleccionada();
-			System.out.println("partidaSeleccionada = " + partidaSeleccionada);
+
 			if (!partidaSeleccionada.equals("")) {
 				Partida partida = controladorPartida.buscarPartida(menuPrincipal.getJugadorSeleccionado(),partidaSeleccionada);
 				//interfaz.actualizarPartidaActual(partidaSeleccionada);
@@ -149,7 +149,7 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 				//interfaz.cambiarPanel("Juego");
 				menuPrincipal.setPartidaSeleccionada(partida);
 				menuPrincipal.setCurrentState(new Juego(menuPrincipal));
-				System.out.println("cambiarPanel e Iniciar Juego");
+
 			} else {
 				JOptionPane.showMessageDialog(this, "Por favor cree una partida para el jugaodor",
 						"No existen partidas", JOptionPane.INFORMATION_MESSAGE);

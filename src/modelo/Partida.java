@@ -34,6 +34,14 @@ public class Partida implements Serializable {
 
     }
 
+    public void volverAJugar(){
+        crearNivelesDelJuego();
+        //obtengo el primer nivel del juego
+        nivel = niveles.poll();
+        vidas= Constantes.NAVE_JUGADOR_VIDAS;
+        puntaje=0;
+    }
+
     /**
      * Crea una pila con los niveles del juego
      * en este caso dos niveles
