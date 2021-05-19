@@ -5,6 +5,7 @@ import gui.SpaceInvaders;
 import gui.estadosJuego.Juego;
 import interfaz.InterfazSpaceInvaders;
 import modelo.enemigo.Alien;
+import modelo.proyectil.BombaAlien;
 import mundo.Enemigo;
 
 public class HiloEnemigos extends Thread {
@@ -21,7 +22,7 @@ public class HiloEnemigos extends Thread {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+
 		while (controladorJuego.isEnEjecucion()) {
 
 			enemigo.mover();
@@ -30,20 +31,19 @@ public class HiloEnemigos extends Thread {
 			try {
 				sleep(80);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 
 			interfaz.updateUI();
 
-/*
-			if (enemigo.getDisparoUno() != null) {
-				if (enemigo.getDisparoUno().getPosY() >= 420) {
-					enemigo.getDisparoUno().setImpacto(true);
+			if (enemigo.getDisparo() != null) {
+				if (enemigo.getDisparo().getPosicionY() >= 420) {
+					enemigo.getDisparo().impacto();
 					enemigo.eliminarDisparo();
 				}
 			}
-*/
+
 		}
 
 	}

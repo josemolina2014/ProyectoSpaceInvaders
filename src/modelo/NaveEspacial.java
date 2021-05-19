@@ -26,7 +26,7 @@ public class NaveEspacial implements ElementoDePantalla {
 
 	@Override
 	public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
-		int siguientePosicion = posicionX+direccion.getUnidad();
+		int siguientePosicion = posicionX+(direccion.getUnidad()*Constantes.MULTIPLICADOR_MOVIMIENTO_NAVE);
 		if(estaDentroLimitePantalla(siguientePosicion))
 			posicionX = siguientePosicion;
 	}

@@ -7,9 +7,9 @@ public class Nivel2 implements Nivel{
     private int velocidadEnemigos;
     private int vidasEnemigos;
     private String nombre;
-    private Alien[][] enemigos;
+
     public Nivel2() {
-        velocidadEnemigos =5;
+        velocidadEnemigos =10;
         vidasEnemigos=2;
         nombre="Nivel 2";
     }
@@ -29,8 +29,5 @@ public class Nivel2 implements Nivel{
         return nombre;
     }
 
-    @Override
-    public Alien[][] getEnemigos() {
-        return enemigos;
-    }
+
 }

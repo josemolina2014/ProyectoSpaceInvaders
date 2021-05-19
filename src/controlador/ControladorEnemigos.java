@@ -3,7 +3,6 @@ package controlador;
 import modelo.enemigo.Alien;
 import modelo.fabrica.FactoryEnemigo;
 import modelo.nivel.Nivel;
-import modelo.nivel.Nivel1;
 import util.Constantes;
 
 public class ControladorEnemigos {
@@ -13,11 +12,11 @@ public class ControladorEnemigos {
 
     private int calcularPosicionX(int columna)
     {
-        return Constantes.ALIEN_ANCHO *(columna+1);
+        return Constantes.ALIEN_POSICION_INICIAL_X *(columna+1);
     }
     private int calcularPosicionY(int columna)
     {
-        return Constantes.ALIEN_ALTO *(columna+1);
+        return Constantes.ALIEN_POSICION_INCIAL_Y *(columna+1);
     }
 
     public Alien[][] crearEnemigos(Nivel nivel) {

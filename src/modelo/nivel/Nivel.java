@@ -10,5 +10,5 @@ public interface Nivel {
 
 	public String getNombre();
 
-	public Alien[][] getEnemigos();
+
 }

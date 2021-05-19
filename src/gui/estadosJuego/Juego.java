@@ -42,7 +42,7 @@ public class Juego extends JPanel implements EstadoJuego{
         addKeyListener(eventosTeclado);
         inciarHilos();
     }
-    private void inciarHilos(){
+    public void inciarHilos(){
         startHiloEnemigo();
         startHiloDisparoAlien();
         startHiloAnimacion();
@@ -161,7 +161,7 @@ public class Juego extends JPanel implements EstadoJuego{
             detenerHilos();
             int bonificacion = (controladorJuego.puntosPorVida() - controladorJuego.puntosPorDisparos());
             if (bonificacion > 0)
-                controladorJuego.getPartidaActual().setPuntaje(bonificacion);
+                controladorJuego.getPartidaActual().agregarPuntos(bonificacion);
 
             if(controladorJuego.siguienteNivel())
                 inciarHilos();
@@ -177,7 +177,7 @@ public class Juego extends JPanel implements EstadoJuego{
             detenerHilos();
             int bonificacion = (controladorJuego.puntosPorVida() - controladorJuego.puntosPorDisparos());
             if (bonificacion > 0)
-                controladorJuego.getPartidaActual().setPuntaje(bonificacion);
+                controladorJuego.getPartidaActual().agregarPuntos(bonificacion);
             finDelJuegoXPerdida();
         }
 

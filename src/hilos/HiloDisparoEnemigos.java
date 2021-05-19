@@ -3,10 +3,7 @@ package hilos;
 
 import controlador.ControladorJuego;
 import gui.estadosJuego.Juego;
-import interfaz.InterfazSpaceInvaders;
-import mundo.NaveJugador;
-import mundo.Partida;
-import mundo.SpaceInvaders;
+
 
 public class HiloDisparoEnemigos extends Thread {
 

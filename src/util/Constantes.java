@@ -10,8 +10,11 @@ public interface Constantes {
     Dimension TAMANO_PANTALLA = new Dimension(ANCHO_PANTALLA, ALTO_PANTALLA);
 
     //Aliens
-    int ALIEN_ANCHO =40;
-    int ALIEN_ALTO =40;
+    int ALIEN_POSICION_INICIAL_X =40;
+    int ALIEN_POSICION_INCIAL_Y =40;
+
+    int ALIEN_ANCHO=12;
+    int ALIEN_ALTO=32;
 
     int ALIEN_FILAS_CALAMARES =1;
     int ALIEN_FILAS_CANGREJOS =2;
@@ -32,16 +35,17 @@ public interface Constantes {
     int NAVE_JUGADOR_POSICION_INICIAL_Y=410;
 
     int BORDE_PANTALLA_NAVE=ANCHO_PANTALLA - (NAVE_JUGADOR_ANCHO+1);
-    int BORDE_PANTALLA_ALIEN=ANCHO_PANTALLA - (ALIEN_ANCHO+1);
+    int BORDE_PANTALLA_ALIEN=ANCHO_PANTALLA - (ALIEN_POSICION_INICIAL_X +1);
 
     String NAVE_JUGADOR_URL_IMAGEN="./data/imagenes/Naves/nave.png";
 
-    int NIVEL1_VIDAS=1;
-    int NIVEL2_VIDAS=2;
+
     int NAVE_JUGADOR_VIDAS = 3;
 
+    int MULTIPLICADOR_MOVIMIENTO_NAVE=10;
+
     enum DIRECCION_MOVIMIENTO_HORIZONTAL {
-        IZQUIERDA (-10), DERECHA (10);
+        IZQUIERDA (-1), DERECHA (1);
         private int unidad;
         DIRECCION_MOVIMIENTO_HORIZONTAL(int unidad) {
             this.unidad=unidad;
@@ -51,8 +55,11 @@ public interface Constantes {
         }
     }
 
+
+
+
     enum DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL {
-        ARRIBA (-1), ABAJO(5);
+        ARRIBA (1), ABAJO(5);
         private int unidad;
 
         DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL(int unidad) {

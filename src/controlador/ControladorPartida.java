@@ -12,7 +12,7 @@ public class ControladorPartida {
     {
         Partida nuevaPartida = new Partida(nombre);
         nuevaPartida.setJugador(jugador);
-        nuevaPartida.setPuntaje(0);
+      //  nuevaPartida.setPuntaje(0); // se traslada al constructor de la clase
         jugador.getPartidas().add(nuevaPartida);
 
         return nuevaPartida;

@@ -24,11 +24,11 @@ public class HiloDisparoJugador extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("controladorJuego = " + controladorJuego.isEnEjecucion());
 		while (controladorJuego.getNaveEspacial().getDisparo()  != null && !controladorJuego.getNaveEspacial().getDisparo().isImpacto()) {
 
 			DisparoNave disparoNave = (DisparoNave) controladorJuego.getNaveEspacial().getDisparo();
 			disparoNave.movimientoVertical();
+
 
 			for (int i = 0; i < enemigos.length && disparoNave != null	&& !disparoNave.isImpacto(); i++)
 			{
@@ -36,17 +36,11 @@ public class HiloDisparoJugador extends Thread {
 						&& !disparoNave.isImpacto(); j++) {
 					if (disparoNave.hitsEnemigo(enemigos[i][j])) {
 						disparoNave.setImpacto(true);
-						controladorJuego.getPartidaActual().setPuntaje(enemigos[i][j].getPuntosPorMuerte());
-
-						//controladorJuego.eliminarUnEnemigo(enemigos[i][j]);
-						controladorJuego.eliminarUnEnemigo(i,j);
+						controladorJuego.getPartidaActual().agregarPuntosPorImpacto(enemigos[i][j].getPuntosPorMuerte());
+						controladorJuego.eliminarUnEnemigo(enemigos[i][j]);
 
 						controladorJuego.getNaveEspacial().eliminarDisparo();
 						framePrincipal.repaint();
-						framePrincipal.updateUI();
-						//framePrincipal.getCurrentState().getMainPanel().repaint();
-						//framePrincipal.getCurrentState().getMainPanel().updateUI();
-
 					}
 				}
 			}
@@ -57,11 +51,11 @@ public class HiloDisparoJugador extends Thread {
 
 				e.printStackTrace();
 			}
-			//framePrincipal.getCurrentState().getMainPanel().updateUI();
-			//framePrincipal.getCurrentState().getMainPanel().updateUI();
+
 			framePrincipal.updateUI();
 			if (disparoNave != null) {
 				if (disparoNave.getPosicionY() <= 0) {
+					disparoNave.setImpacto(true);
 					controladorJuego.getNaveEspacial().eliminarDisparo();
 				}
 			}

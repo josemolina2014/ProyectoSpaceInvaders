@@ -30,6 +30,7 @@ public class Partida implements Serializable {
         //obtengo el primer nivel del juego
         nivel = niveles.poll();
         vidas= Constantes.NAVE_JUGADOR_VIDAS;
+        puntaje=0;
 
     }
 
@@ -40,6 +41,7 @@ public class Partida implements Serializable {
     private void crearNivelesDelJuego(){
         try
         {
+            niveles =new LinkedList<>();
             FactoryNivel factoryNivel = new FactoryNivel();
             niveles.add(factoryNivel.crearNivel("1"));
             niveles.add(factoryNivel.crearNivel("2"));
@@ -55,34 +57,6 @@ public class Partida implements Serializable {
      */
     public Nivel getSiguienteNivel(){
         return niveles.poll();
-    }
-
-    public static void main(String[] args) {
-        try
-        {
-            FactoryNivel factoryNivel = new FactoryNivel();
-            Queue<Nivel> cola=new LinkedList();
-            cola.add(factoryNivel.crearNivel("1"));
-            cola.add(factoryNivel.crearNivel("2"));
-
-            System.out.println("nivles ok "+cola.size());
-            Nivel nivel = cola.poll();
-            System.out.println("nivel = " + nivel.getNombre());
-            System.out.println("nivles ok "+cola.size());
-
-
-            nivel = cola.poll();
-            System.out.println("nivel = " + nivel.getNombre());
-            System.out.println("nivles ok "+cola.size());
-
-            nivel = cola.poll();
-            System.out.println("nivel = " + nivel.getNombre());
-            System.out.println("nivles ok "+cola.size());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public Jugador getJugador() {
@@ -105,8 +79,12 @@ public class Partida implements Serializable {
         return puntaje;
     }
 
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
+    public void agregarPuntosPorImpacto(int puntosPorImpacto) {
+        this.puntaje +=puntosPorImpacto;
+    }
+
+    public void agregarPuntos(int puntos) {
+        this.puntaje +=puntos;
     }
 
     public String getNombre() {

@@ -20,10 +20,12 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 		impacto=false;
 	}
 
-	public boolean hitsEnemigo(Alien alien) {
+	public boolean hitsEnemigo(Alien alien)
+	{
 		boolean salida = false;
 		int r = 8;
-		if (alien != null) {
+		if (alien != null)
+		{
 			double cateto = this.posicionX - alien.getPosicionX();
 			double cateto2 = this.posicionY - alien.getPosicionY();
 			double d = Math.sqrt((cateto * cateto) + (cateto2 * cateto2));
@@ -128,5 +130,9 @@ public class DisparoNave implements ElementoDePantalla, Proyectil {
 
 	public void setImpacto(boolean impacto) {
 		this.impacto = impacto;
+	}
+	@Override
+	public void impacto() {
+		setImpacto(true);
 	}
 }

@@ -14,6 +14,7 @@ public interface Proyectil {
 	public boolean isImpacto();
 	public void movimientoVertical();
 	public boolean impactoAlAdversario(ElementoDePantalla objeto);
+	public void impacto();
 
 
 }

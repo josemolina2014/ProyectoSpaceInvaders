@@ -29,7 +29,6 @@ public class HiloAuxiliarCreaDisparo extends Thread {
 						controladorJuego.getAliens()[fila][columna].getPosicionX(),
 						controladorJuego.getAliens()[fila][columna].getPosicionY());
 
-				controladorJuego.getAliens()[fila][columna].dispararMisil();
 			}
 
 			try {

@@ -2,7 +2,7 @@ package modelo.enemigo;
 
 import modelo.ElementoDePantalla;
 import modelo.fabrica.FactoryProyectil;
-import modelo.proyectil.Proyectil;
+import modelo.proyectil.BombaAlien;
 import util.Constantes;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
     private int vidas;
     private int velocidad;
     private Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion;
-    private Proyectil disparo;
+    private BombaAlien disparo;
     private FactoryProyectil factoryProyectil;
 
 
@@ -29,6 +29,8 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
         this.posicionY = posicionY;
 
         direccion = Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL.DERECHA;
+        this.ancho = Constantes.ALIEN_ANCHO;
+        this.alto= Constantes.ALIEN_ALTO;
 
     }
 
@@ -122,11 +124,13 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
         this.velocidad = velocidad;
     }
 
+
     @Override
     public void mover(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
-        int siguientePosicion = posicionX+direccion.getUnidad();
+
+        int siguientePosicion = posicionX+direccion.getUnidad()*velocidad;
         if(estaDentroLimitePantalla(siguientePosicion))
-            posicionX = siguientePosicion*velocidad;
+            posicionX = siguientePosicion;
         else
         {
             posicionY += Constantes.UNIDADES_DESCENSO_ALIEN;
@@ -162,22 +166,18 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
 
     public void disparar(int posicionX, int posicionY)
     {
-        System.out.println("Alien.disparar");
-        System.out.println("posicionX = " + posicionX + ", posicionY = " + posicionY);
-    }
-
-    public void dispararMisil()
-    {
-        System.out.println("Alien.dispararMisil");
-        System.out.println("posicionX = " + posicionX + ", posicionY = " + posicionY);
+        if(disparo==null){
+            disparo = new BombaAlien(posicionX,posicionY);
+        }
     }
 
 
-    public Proyectil getDisparo() {
+
+    public BombaAlien getDisparo() {
         return disparo;
     }
 
-    public void setDisparo(Proyectil disparo) {
+    public void setDisparo(BombaAlien disparo) {
         this.disparo = disparo;
     }
     public void eliminarDisparo() {

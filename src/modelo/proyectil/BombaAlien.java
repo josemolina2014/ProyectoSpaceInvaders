@@ -88,7 +88,8 @@ public class BombaAlien implements ElementoDePantalla, Proyectil{
 
 	@Override
 	public void movimientoVertical(){
-		posicionY = posicionY - Constantes.DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL.ABAJO.getUnidad();
+		posicionY = posicionY +
+				Constantes.DIRECCION_MOVIMIENTO_VERTICAL_PROYECTIL.ABAJO.getUnidad();
 	}
 
 	/**
@@ -115,6 +116,11 @@ public class BombaAlien implements ElementoDePantalla, Proyectil{
 
 		return salida;
 
+	}
+
+	@Override
+	public void impacto() {
+		setImpacto(true);
 	}
 
 	public void setImpacto(boolean impacto) {

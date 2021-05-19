@@ -22,14 +22,23 @@ public class ControladorJuego {
 
 	private HiloDisparoJugador hiloDisparoJugador;
 	private boolean enEjecucion;
+	private boolean juegoEnPausa;
 
 	private ControladorJuego(Partida partidaActual) {
 		this.partidaActual = partidaActual;
 		inicializarNaveEspacial();
 		inicializarEnemigos(partidaActual.getNivel());
 		estadoDelJuego=1;
+		iniciarJuego();
+	}
+
+	public void iniciarJuego() {
 		enEjecucion=true;
 	}
+	public void detenerJuego() {
+		enEjecucion=false;
+	}
+
 	private static void createInstance(Partida partida){
 		if(instancia==null)
 			instancia = new ControladorJuego(partida);
@@ -100,7 +109,7 @@ public class ControladorJuego {
 	public void finalizarJuego()
 	{
 		estadoDelJuego=2;
-		enEjecucion=false;
+		detenerJuego();
 	}
 
 	public boolean siguienteNivel(){
@@ -113,7 +122,7 @@ public class ControladorJuego {
 		}
 		else
 		{
-			enEjecucion=false;
+			detenerJuego();
 			return false;
 		}
 	}
@@ -122,10 +131,10 @@ public class ControladorJuego {
 
 
 	public void TerminarJuego() {
-		enEjecucion=false;
+		detenerJuego();
 		int bonificacion = puntosPorVida()-puntosPorDisparos();
 		if(bonificacion>0)
-			partidaActual.setPuntaje(bonificacion);
+			partidaActual.agregarPuntos(bonificacion);
 
 		System.out.println("pasar al menu principal");
 
@@ -163,13 +172,21 @@ public class ControladorJuego {
 		hiloDisparoJugador.start();
 	}
 
-
-
-
-
-
-
 	public void setNaveEspacial(NaveEspacial naveEspacial) {
 		this.naveEspacial = naveEspacial;
+	}
+
+	public boolean isJuegoEnPausa() {
+		return juegoEnPausa;
+	}
+
+	public void setJuegoEnPausa(boolean juegoEnPausa) {
+		this.juegoEnPausa = juegoEnPausa;
+	}
+	public void pausarJuego(){
+		juegoEnPausa=true;
+	}
+	public void desPausarJuego(){
+		juegoEnPausa=false;
 	}
 }
