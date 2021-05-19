@@ -1,6 +1,5 @@
 package controlador;
 
-import gui.SpaceInvaders;
 import gui.estadosJuego.Juego;
 import util.Constantes;
 

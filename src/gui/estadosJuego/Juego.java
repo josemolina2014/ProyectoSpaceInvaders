@@ -2,7 +2,6 @@ package gui.estadosJuego;
 
 import controlador.ControladorJuego;
 import controlador.ControladorMejoresPuntajes;
-import controlador.ControladorPartida;
 import controlador.EventosTeclado;
 import gui.SpaceInvaders;
 import hilos.*;
@@ -136,8 +135,8 @@ public class Juego extends JPanel implements EstadoJuego{
         for (int i = 0; i < controladorJuego.getAliens().length; i++) {
             for (int j = 0; j < controladorJuego.getAliens()[i].length; j++) {
                 if (controladorJuego.getAliens()[i][j] != null) {
-                    if (controladorJuego.getAliens()[i][j].getDisparo() != null) {
-                        BombaAlien bombaAlien = (BombaAlien) controladorJuego.getAliens()[i][j].getDisparo();
+                    if (controladorJuego.getAliens()[i][j].getBomba() != null) {
+                        BombaAlien bombaAlien = (BombaAlien) controladorJuego.getAliens()[i][j].getBomba();
                         if (bombaAlien != null) {
                             g.setColor(Color.RED);
                             g.fillOval(bombaAlien.getPosicionX(), bombaAlien.getPosicionY(), 7, 7);

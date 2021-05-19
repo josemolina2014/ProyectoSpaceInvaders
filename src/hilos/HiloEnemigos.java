@@ -1,12 +1,8 @@
 package hilos;
 
 import controlador.ControladorJuego;
-import gui.SpaceInvaders;
 import gui.estadosJuego.Juego;
-import interfaz.InterfazSpaceInvaders;
 import modelo.enemigo.Alien;
-import modelo.proyectil.BombaAlien;
-import mundo.Enemigo;
 
 public class HiloEnemigos extends Thread {
 	private Juego interfaz;
@@ -37,9 +33,9 @@ public class HiloEnemigos extends Thread {
 
 			interfaz.updateUI();
 
-			if (enemigo.getDisparo() != null) {
-				if (enemigo.getDisparo().getPosicionY() >= 420) {
-					enemigo.getDisparo().impacto();
+			if (enemigo.getBomba() != null) {
+				if (enemigo.getBomba().getPosicionY() >= 420) {
+					enemigo.getBomba().impacto();
 					enemigo.eliminarDisparo();
 				}
 			}

@@ -1,12 +1,9 @@
 package modelo.proyectil;
 
 import modelo.ElementoDePantalla;
-import util.Constantes;
 
 public interface Proyectil {
 
-	public boolean isVisible();
-	public void setVisible(boolean visible);
 	public int getPosicionX();
 	public void setPosicionX(int posicionX);
 	public int getPosicionY();
@@ -15,6 +12,7 @@ public interface Proyectil {
 	public void movimientoVertical();
 	public boolean impactoAlAdversario(ElementoDePantalla objeto);
 	public void impacto();
-
+	public void setVisible(boolean visible);
+	public boolean isVisible();
 
 }

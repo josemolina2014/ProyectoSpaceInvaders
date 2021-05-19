@@ -1,24 +1,21 @@
 package controlador;
 
 
-import gui.SpaceInvaders;
 import gui.estadosJuego.Juego;
 import hilos.HiloDisparoJugador;
-import hilos.HiloEnemigos;
 import modelo.NaveEspacial;
 import modelo.Partida;
-import modelo.Puntaje;
 import modelo.enemigo.Alien;
 import modelo.nivel.Nivel;
 
 public class ControladorJuego {
 
-	private static ControladorJuego instancia;
+
 	private Partida partidaActual;
 	private NaveEspacial naveEspacial;
 	private Alien [][] aliens;
-	private Puntaje puntaje;
-	private int estadoDelJuego;
+
+
 
 	private HiloDisparoJugador hiloDisparoJugador;
 	private boolean enEjecucion;
@@ -28,41 +25,15 @@ public class ControladorJuego {
 		this.partidaActual = partidaActual;
 		inicializarNaveEspacial();
 		inicializarEnemigos(partidaActual.getNivel());
-		estadoDelJuego=1;
+
 		iniciarJuego();
 	}
-
-	/*
-	private ControladorJuego(Partida partidaActual) {
-		this.partidaActual = partidaActual;
-		inicializarNaveEspacial();
-		inicializarEnemigos(partidaActual.getNivel());
-		estadoDelJuego=1;
-		iniciarJuego();
-	}
-
-	private static void createInstance(Partida partida){
-		if(instancia==null)
-			instancia = new ControladorJuego(partida);
-	}
-
-	public static ControladorJuego getInstancia(Partida partida) {
-		if(instancia==null) createInstance(partida);
-		return instancia;
-	}*/
 
 	public void iniciarJuego() {
 		enEjecucion=true;
 	}
 	public void detenerJuego() {
 		enEjecucion=false;
-	}
-
-	public void reinicarJuego(){
-		inicializarNaveEspacial();
-		inicializarEnemigos(partidaActual.getNivel());
-		estadoDelJuego=1;
-		iniciarJuego();
 	}
 
 	public void inicializarEnemigos(Nivel nivel) {
@@ -87,19 +58,11 @@ public class ControladorJuego {
 		}
 
 	}
-	public void eliminarUnEnemigo(int fila, int columna)
-	{
-		if(fila<aliens.length && columna<aliens[0].length)
-			aliens[fila][columna] = null;
-	}
+
 
 	public void impactoEnNaveJugador()
 	{
 		partidaActual.setVidas(partidaActual.getVidas()-1);
-	}
-
-	public void impactoEnAlien(){
-
 	}
 
 	public boolean jugadorSinVidas()
@@ -124,7 +87,6 @@ public class ControladorJuego {
 
 	public void finalizarJuego()
 	{
-		estadoDelJuego=2;
 		detenerJuego();
 	}
 
@@ -143,16 +105,6 @@ public class ControladorJuego {
 		}
 	}
 
-
-
-
-	public void TerminarJuego() {
-		detenerJuego();
-		int bonificacion = puntosPorVida()-puntosPorDisparos();
-		if(bonificacion>0)
-			partidaActual.agregarPuntos(bonificacion);
-
-	}
 	public int puntosPorVida(){
 		return (partidaActual.getVidas()*200);
 	}
@@ -184,17 +136,10 @@ public class ControladorJuego {
 		hiloDisparoJugador.start();
 	}
 
-	public void setNaveEspacial(NaveEspacial naveEspacial) {
-		this.naveEspacial = naveEspacial;
-	}
-
 	public boolean isJuegoEnPausa() {
 		return juegoEnPausa;
 	}
 
-	public void setJuegoEnPausa(boolean juegoEnPausa) {
-		this.juegoEnPausa = juegoEnPausa;
-	}
 	public void pausarJuego(){
 		juegoEnPausa=true;
 	}

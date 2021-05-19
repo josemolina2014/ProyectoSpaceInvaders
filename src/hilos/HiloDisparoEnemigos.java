@@ -29,10 +29,10 @@ public class HiloDisparoEnemigos extends Thread {
 				for (int j = 0; j < controladorJuego.getAliens()[0].length; j++) {
 					
 					if (controladorJuego.getAliens()[i][j] != null) {
-						if (controladorJuego.getAliens()[i][j].getDisparo() != null) {
-							controladorJuego.getAliens()[i][j].getDisparo().movimientoVertical();
+						if (controladorJuego.getAliens()[i][j].getBomba() != null) {
+							controladorJuego.getAliens()[i][j].getBomba().movimientoVertical();
 							
-							if (controladorJuego.getAliens()[i][j].getDisparo().impactoAlAdversario(controladorJuego.getNaveEspacial())) {
+							if (controladorJuego.getAliens()[i][j].getBomba().impactoAlAdversario(controladorJuego.getNaveEspacial())) {
 								controladorJuego.getAliens()[i][j].eliminarDisparo();
 								controladorJuego.impactoEnNaveJugador();
 							}

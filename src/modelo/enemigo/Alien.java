@@ -20,7 +20,7 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
     private int vidas;
     private int velocidad;
     private Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion;
-    private BombaAlien disparo;
+    private BombaAlien bomba;
     private FactoryProyectil factoryProyectil;
 
 
@@ -31,6 +31,8 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
         direccion = Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL.DERECHA;
         this.ancho = Constantes.ALIEN_ANCHO;
         this.alto= Constantes.ALIEN_ALTO;
+
+        factoryProyectil = new FactoryProyectil();
 
     }
 
@@ -160,27 +162,25 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
         return direccion;
     }
 
-    public void setDireccion(Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion) {
-        this.direccion = direccion;
-    }
 
     public void disparar(int posicionX, int posicionY)
     {
-        if(disparo==null){
-            disparo = new BombaAlien(posicionX,posicionY);
+        if(bomba ==null){
+            bomba = (BombaAlien) factoryProyectil.crearProyectil(Constantes.Tipo_proyectil.ALIEN, posicionX, posicionY); //new BombaAlien(posicionX,posicionY);
+
         }
     }
 
 
 
-    public BombaAlien getDisparo() {
-        return disparo;
+    public BombaAlien getBomba() {
+        return bomba;
     }
 
-    public void setDisparo(BombaAlien disparo) {
-        this.disparo = disparo;
+    public void setBomba(BombaAlien bomba) {
+        this.bomba = bomba;
     }
     public void eliminarDisparo() {
-        this.disparo = null;
+        this.bomba = null;
     }
 }

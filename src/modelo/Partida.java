@@ -67,6 +67,14 @@ public class Partida implements Serializable {
         return niveles.poll();
     }
 
+    public void agregarPuntosPorImpacto(int puntosPorImpacto) {
+        this.puntaje +=puntosPorImpacto;
+    }
+
+    public void agregarPuntos(int puntos) {
+        this.puntaje +=puntos;
+    }
+
     public Jugador getJugador() {
         return jugador;
     }
@@ -85,14 +93,6 @@ public class Partida implements Serializable {
 
     public int getPuntaje() {
         return puntaje;
-    }
-
-    public void agregarPuntosPorImpacto(int puntosPorImpacto) {
-        this.puntaje +=puntosPorImpacto;
-    }
-
-    public void agregarPuntos(int puntos) {
-        this.puntaje +=puntos;
     }
 
     public String getNombre() {
