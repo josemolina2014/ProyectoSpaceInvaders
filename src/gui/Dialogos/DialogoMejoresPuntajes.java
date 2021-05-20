@@ -5,10 +5,10 @@ import gui.SpaceInvaders;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.List;
 
 public class DialogoMejoresPuntajes extends JDialog implements ActionListener {
 

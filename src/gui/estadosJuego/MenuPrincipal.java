@@ -1,13 +1,12 @@
 package gui.estadosJuego;
 
-import controlador.ControladorMejoresPuntajes;
 import gui.Dialogos.*;
 import gui.SpaceInvaders;
+import util.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 
 import static java.awt.Component.RIGHT_ALIGNMENT;
 
@@ -314,7 +313,7 @@ public class MenuPrincipal  implements EstadoJuego, ActionListener {
         };
         // Establece el tamaño, la contenedora de tamaño y le quita el fondo que
         // trae por defecto.
-        panelMenuPrincipal.setPreferredSize(new Dimension(SpaceInvaders.ANCHO, SpaceInvaders.ALTO));
+        panelMenuPrincipal.setPreferredSize(Constantes.TAMANO_PANTALLA);
         panelMenuPrincipal.setLayout(null);
         panelMenuPrincipal.setOpaque(false);
     }
@@ -342,7 +341,7 @@ public class MenuPrincipal  implements EstadoJuego, ActionListener {
 
         // Pinta la imagen de fondo
         ImageIcon fondo = new ImageIcon("./data/imagenes/menu2.png");
-        g2.drawImage(fondo.getImage(), 0, 0, SpaceInvaders.ANCHO, SpaceInvaders.ALTO, null);
+        g2.drawImage(fondo.getImage(), 0, 0, Constantes.ANCHO_PANTALLA, Constantes.ALTO_PANTALLA, null);
 
         // Dibuja el nickname, nombre y monedas del jugador actual del juego.
         g2.setColor(Color.GREEN);

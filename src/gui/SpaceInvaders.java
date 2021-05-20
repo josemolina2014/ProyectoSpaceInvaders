@@ -2,7 +2,6 @@ package gui;
 
 import gui.estadosJuego.EstadoJuego;
 import gui.estadosJuego.IntroJuego;
-import gui.estadosJuego.PerdidaPartida;
 import modelo.Jugador;
 import modelo.Partida;
 import util.Constantes;

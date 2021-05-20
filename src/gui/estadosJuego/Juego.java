@@ -7,7 +7,7 @@ import gui.SpaceInvaders;
 import hilos.*;
 import modelo.proyectil.BombaAlien;
 import modelo.proyectil.DisparoNave;
-
+import util.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +40,7 @@ public class Juego extends JPanel implements EstadoJuego{
         //controladorJuego = ControladorJuego.getInstancia(framePrincipal.getPartidaSeleccionada());
 
         controladorJuego = new ControladorJuego(framePrincipal.getPartidaSeleccionada());
-        setPreferredSize(new Dimension(SpaceInvaders.ANCHO, SpaceInvaders.ALTO));
+        setPreferredSize(Constantes.TAMANO_PANTALLA);
         setLayout(null);
         eventosTeclado  = new EventosTeclado(this,controladorJuego);
         addKeyListener(eventosTeclado);

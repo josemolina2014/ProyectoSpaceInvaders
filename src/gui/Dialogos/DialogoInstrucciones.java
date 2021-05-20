@@ -1,7 +1,6 @@
 package gui.Dialogos;
 
 import gui.SpaceInvaders;
-import interfaz.InterfazSpaceInvaders;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

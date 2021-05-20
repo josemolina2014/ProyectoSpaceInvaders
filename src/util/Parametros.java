@@ -2,7 +2,6 @@ package util;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 public class Parametros {
 

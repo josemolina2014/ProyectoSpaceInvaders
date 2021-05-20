@@ -2,8 +2,6 @@ package hilos;
 
 import controlador.ControladorJuego;
 import gui.estadosJuego.Juego;
-import interfaz.InterfazSpaceInvaders;
-import mundo.Partida;
 
 public class HiloAuxiliarCreaDisparo extends Thread {
 

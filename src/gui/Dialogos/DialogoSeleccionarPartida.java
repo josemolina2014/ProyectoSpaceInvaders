@@ -5,7 +5,6 @@ import gui.SpaceInvaders;
 import gui.estadosJuego.Juego;
 import modelo.Partida;
 
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

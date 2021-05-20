@@ -1,14 +1,9 @@
 package hilos;
 
 import controlador.ControladorJuego;
-import gui.SpaceInvaders;
 import gui.estadosJuego.Juego;
-import interfaz.InterfazSpaceInvaders;
 import modelo.enemigo.Alien;
 import modelo.proyectil.DisparoNave;
-import mundo.Enemigo;
-import mundo.NaveJugador;
-import mundo.Partida;
 
 public class HiloDisparoJugador extends Thread {
 

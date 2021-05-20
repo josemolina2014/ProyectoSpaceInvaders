@@ -1,9 +1,6 @@
 package gui.estadosJuego;
 
-import controlador.ControladorJuego;
-import controlador.ControladorPartida;
 import gui.SpaceInvaders;
-import modelo.Partida;
 import util.Constantes;
 
 import javax.swing.*;

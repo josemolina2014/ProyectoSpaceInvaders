@@ -2,11 +2,7 @@ package hilos;
 
 import controlador.ControladorJuego;
 import gui.estadosJuego.Juego;
-import interfaz.InterfazSpaceInvaders;
 import modelo.enemigo.Alien;
-import mundo.Enemigo;
-import mundo.InvasorCalamar;
-import mundo.InvasorCangrejo;
 
 import java.util.concurrent.TimeUnit;
 
