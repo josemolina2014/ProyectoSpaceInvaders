@@ -7,7 +7,7 @@ import util.Constantes;
 
 import java.util.List;
 
-public abstract class Alien implements ElementoDePantalla, Cloneable {
+public abstract class Alien implements ElementoDePantalla {
 
     private int posicionX;
     private int posicionY;
@@ -17,7 +17,7 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
     private String rutaImagen;
     private int puntosPorMuerte;
     private List<String> urlImagenes;
-    private int vidas;
+
     private int velocidad;
     private Constantes.DIRECCION_MOVIMIENTO_HORIZONTAL direccion;
     private BombaAlien bomba;
@@ -97,10 +97,6 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
         this.ancho = ancho;
     }
 
-    public Alien clonar() throws CloneNotSupportedException {
-        return (Alien) this.clone();
-    }
-
     public int getPuntosPorMuerte() {
         return puntosPorMuerte;
     }
@@ -108,15 +104,6 @@ public abstract class Alien implements ElementoDePantalla, Cloneable {
     public void setPuntosPorMuerte(int puntosPorMuerte) {
         this.puntosPorMuerte = puntosPorMuerte;
     }
-
-    public int getVidas() {
-        return vidas;
-    }
-
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
-    }
-
 
     public int getVelocidad() {
         return velocidad;

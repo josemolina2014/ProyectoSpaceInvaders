@@ -2,10 +2,11 @@ package modelo.fabrica;
 
 import modelo.nivel.Nivel;
 
+import java.util.Queue;
+
 public interface IFactoryNivel {
 
-	public Nivel crearNivel(String tipoNivel) throws Exception ;
-
+	public Queue<Nivel> crearNivelesDelJuego();
 
 
 }

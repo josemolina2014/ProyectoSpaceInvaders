@@ -38,7 +38,7 @@ public class ControladorEnemigos {
                 for (int columna = 0; columna < aliens[coordenadaY].length; columna++)
                 {
                     Alien alien = fabricaEnemigos.crearAlien(type,calcularPosicionX(columna), calcularPosicionY(coordenadaY));
-                    alien.setVidas(nivel.getVidasEnemigos());
+
                     alien.setVelocidad(nivel.getVelocidadEnemigos());
 
                     aliens[coordenadaY][columna]=alien;

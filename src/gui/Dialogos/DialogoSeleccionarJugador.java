@@ -95,9 +95,9 @@ public class DialogoSeleccionarJugador extends JDialog implements ListSelectionL
 			controladorJugador = new ControladorJugador();
 			controladorJugador.deserializarJugador();
 		} catch (IOException e) {
-			e.printStackTrace();
+
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+
 		}
 
 		this.menuPrincipal = interfaz;

@@ -3,29 +3,24 @@ package modelo.fabrica;
 import modelo.nivel.Nivel;
 import modelo.nivel.Nivel1;
 import modelo.nivel.Nivel2;
+import modelo.nivel.Nivel3;
 
-import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class FactoryNivel implements IFactoryNivel{
-
-	private HashMap<String, Nivel> niveles;
+	private Queue<Nivel> coladeNiveles;
 
 	public FactoryNivel() {
-		niveles = new HashMap<>();
-
-		niveles.put("1",new Nivel1());
-		niveles.put("2",new Nivel2());
+		coladeNiveles =new LinkedList<>();
+		coladeNiveles.add(new Nivel1());
+		coladeNiveles.add(new Nivel2());
+		coladeNiveles.add(new Nivel3());
 	}
 
 	@Override
-	public Nivel crearNivel(String tipoNivel) throws Exception{
-		if(niveles.get(tipoNivel)!=null)
-			return niveles.get(tipoNivel);
-		else
-			throw new Exception("El nivel "+tipoNivel + " no existe");
+	public Queue<Nivel> crearNivelesDelJuego(){
+		return coladeNiveles;
 	}
-
-
-
 
 }

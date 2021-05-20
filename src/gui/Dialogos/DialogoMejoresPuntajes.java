@@ -63,9 +63,9 @@ public class DialogoMejoresPuntajes extends JDialog implements ActionListener {
 			controladorMejoresPuntajes.deserializarPuntaje();
 			puntajes = controladorMejoresPuntajes.getResumenMejoresPuntajes();
 		} catch (IOException e) {
-			e.printStackTrace();
+
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+
 		}
 		setLayout(null);
 

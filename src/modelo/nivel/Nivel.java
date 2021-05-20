@@ -6,8 +6,6 @@ public interface Nivel extends Serializable {
 
 	public int getVelocidadEnemigos();
 
-	public int getVidasEnemigos();
-
 	public String getNombre();
 
 

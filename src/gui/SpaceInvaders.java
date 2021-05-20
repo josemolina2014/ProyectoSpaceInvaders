@@ -12,8 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SpaceInvaders {
-    public static final int ANCHO = 640;
-    public static final int ALTO = 480;
+   
 
     private JFrame jFrame;
     private EstadoJuego currentState;

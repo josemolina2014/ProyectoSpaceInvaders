@@ -46,16 +46,9 @@ public class Partida implements Serializable {
      * Crea una pila con los niveles del juego
      * en este caso dos niveles
      */
-    private void crearNivelesDelJuego(){
-        try
-        {
-            niveles =new LinkedList<>();
-            FactoryNivel factoryNivel = new FactoryNivel();
-            niveles.add(factoryNivel.crearNivel("1"));
-            niveles.add(factoryNivel.crearNivel("2"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void crearNivelesDelJuego()
+    {
+        niveles= new FactoryNivel().crearNivelesDelJuego();
     }
 
     /**
