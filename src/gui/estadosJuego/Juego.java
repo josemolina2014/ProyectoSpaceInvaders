@@ -34,7 +34,7 @@ public class Juego extends JPanel implements EstadoJuego{
         super();
         this.framePrincipal = framePrincipal;
         this.framePrincipal.setJuegoEnCurso(true);
-        detenerHilos();
+
 
 
         //controladorJuego = ControladorJuego.getInstancia(framePrincipal.getPartidaSeleccionada());

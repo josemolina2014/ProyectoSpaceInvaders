@@ -14,8 +14,8 @@ public class FactoryNivel implements IFactoryNivel{
 	public FactoryNivel() {
 		coladeNiveles =new LinkedList<>();
 		coladeNiveles.add(new Nivel1());
-		coladeNiveles.add(new Nivel2());
-		coladeNiveles.add(new Nivel3());
+
+
 	}
 
 	@Override

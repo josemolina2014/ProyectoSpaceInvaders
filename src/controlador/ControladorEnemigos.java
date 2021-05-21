@@ -18,11 +18,12 @@ public class ControladorEnemigos {
     {
         return Constantes.ALIEN_POSICION_INCIAL_Y *(columna+1);
     }
+    FactoryEnemigo fabricaEnemigos;
 
     public Alien[][] crearEnemigos(Nivel nivel) {
 
         aliens = new Alien [Constantes.ALIEN_FILAS][Constantes.ALIEN_COLUMNAS];
-
+        fabricaEnemigos= new FactoryEnemigo();
         generarEnemigos(Constantes.TiposEnemigos.CALAMAR,Constantes.ALIEN_FILAS_CALAMARES, nivel);
         generarEnemigos(Constantes.TiposEnemigos.CANGREJO,Constantes.ALIEN_FILAS_CANGREJOS, nivel);
         generarEnemigos(Constantes.TiposEnemigos.PULPO,Constantes.ALIEN_FILAS_PULPOS, nivel);
@@ -32,7 +33,7 @@ public class ControladorEnemigos {
 
     private void generarEnemigos(Constantes.TiposEnemigos type, int cantidadFilas, Nivel nivel){
         try {
-            FactoryEnemigo fabricaEnemigos = new FactoryEnemigo();
+
             for (int fila = 0; fila < cantidadFilas; fila++)
             {
                 for (int columna = 0; columna < aliens[coordenadaY].length; columna++)
